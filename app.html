@@ -609,7 +609,7 @@ html[data-theme=light] .leaflet-tile-pane{filter:saturate(.7) sepia(.08) contras
 .home-card{background:linear-gradient(140deg,color-mix(in srgb,var(--gold) 16%,var(--card-solid)),var(--card-solid))!important;border-color:color-mix(in srgb,var(--gold) 40%,transparent)!important}
 
 /* ---------- Instagram ---------- */
-.igcard{display:block;padding:16px;border-radius:24px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow-s);position:relative;overflow:hidden}
+.igcard{display:block;padding:14px;border-radius:24px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow-s);position:relative;overflow:hidden}
 .igcard::before{content:"";position:absolute;inset:0;border-radius:24px;padding:1.5px;background:linear-gradient(45deg,#F9CE34,#EE2A7B,#6228D7);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .ig-top{display:flex;align-items:center;gap:12px}
 .ig-av{flex:none;width:52px;height:52px;border-radius:50%;padding:2.5px;background:conic-gradient(from 210deg,#F9CE34,#EE2A7B,#6228D7,#F9CE34)}
@@ -639,6 +639,14 @@ html[data-theme=light] .leaflet-tile-pane{filter:saturate(.7) sepia(.08) contras
 .tag.ville{background:rgba(79,163,188,.92);color:#fff;border-color:transparent}
 .ag-item.ares{border-color:color-mix(in srgb,var(--gold) 45%,transparent);background:linear-gradient(140deg,color-mix(in srgb,var(--gold) 10%,var(--card-solid)),var(--card-solid))}
 .by-ares{color:var(--accent);font-weight:700}
+.ig-layout{display:grid;gap:16px}
+.ig-frame{border-radius:16px;overflow:hidden;background:#fff;line-height:0}
+.ig-frame iframe{display:block;width:100%;height:400px;border:0;background:#fff}
+.ig-side{display:flex;flex-direction:column;gap:12px;padding:0 4px 4px}
+.ig-side p{margin:0}
+.ig-btn.big{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;font-size:14.5px;border-radius:14px}
+@media (max-width:699px){.ig-side .ig-top{display:none}}
+@media (min-width:700px){.ig-layout{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center}.ig-side{padding:6px 10px}}
 /* ---------- Pêche à pied & hôpital ---------- */
 .pin.no{background:linear-gradient(140deg,#F08A6E,#B0402E)}
 .place.no{border-color:color-mix(in srgb,var(--red) 40%,transparent)}
@@ -1047,19 +1055,19 @@ body.mapmode footer{display:none}
 
     <section class="sec rv">
       <div class="sec-h"><div><span class="kicker">Instagram</span><h2><span class="fr">Suivez <em>le Cocon</em></span><span class="en">Follow <em>the Cocon</em></span></h2></div></div>
-      <a class="igcard" href="https://www.instagram.com/tinyhouse.33740/" target="_blank" rel="noopener">
-        <div class="ig-top">
-          <span class="ig-av"><span><svg viewBox="0 0 64 64"><circle cx="40" cy="22" r="8" fill="#E8CF9C"/><path d="M8 40c6-6 12-6 18 0s12 6 18 0 9-5 12-3" stroke="#C9A96E" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span></span>
-          <div class="ig-id"><b>@tinyhouse.33740</b><small>Le Cocon du Bassin · Arès</small></div>
-          <span class="ig-btn"><span class="fr">S'abonner</span><span class="en">Follow</span></span>
+      <div class="igcard">
+        <div class="ig-layout">
+          <div class="ig-frame"><iframe id="igFrame" src="https://www.instagram.com/tinyhouse.33740/embed/" title="Publications Instagram de @tinyhouse.33740" loading="lazy" scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+          <div class="ig-side">
+            <div class="ig-top">
+              <span class="ig-av"><span><svg viewBox="0 0 64 64"><circle cx="40" cy="22" r="8" fill="#E8CF9C"/><path d="M8 40c6-6 12-6 18 0s12 6 18 0 9-5 12-3" stroke="#C9A96E" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span></span>
+              <div class="ig-id"><b>@tinyhouse.33740</b><small>Le Cocon du Bassin · Arès</small></div>
+            </div>
+            <p><span class="fr">Nos coins préférés du Bassin, les coulisses du Cocon et nos nouveautés. Abonnez-vous pour garder un pied sur le Bassin… et revenir nous voir.</span><span class="en">Our favourite spots around the Bay, behind the scenes at the Cocon and what's new. Follow us to keep a foot on the Bay… and come back to see us.</span></p>
+            <a class="ig-btn big" href="https://www.instagram.com/tinyhouse.33740/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg><span class="fr">S'abonner sur Instagram</span><span class="en">Follow on Instagram</span></a>
+          </div>
         </div>
-        <div class="ig-grid">
-          <span style="background:linear-gradient(160deg,#F6C77E,#C9845A 55%,#3D4955)"><i>🌅</i><small><span class="fr">Couchers de soleil</span><span class="en">Sunsets</span></small></span>
-          <span style="background:linear-gradient(160deg,#9FD0E2,#4F8FA8 60%,#2F5B6B)"><i>🦪</i><small><span class="fr">Nos cabanes</span><span class="en">Oyster shacks</span></small></span>
-          <span style="background:linear-gradient(160deg,#E9DFC8,#B98A5C 60%,#5C4636)"><i>🏡</i><small><span class="fr">La vie au Cocon</span><span class="en">Life at the Cocon</span></small></span>
-        </div>
-        <p><span class="fr">Nos coins préférés du Bassin, les coulisses du Cocon et nos nouveautés. Abonnez-vous pour garder un pied sur le Bassin… et revenir nous voir.</span><span class="en">Our favourite spots around the Bay, behind the scenes at the Cocon and what's new. Follow us to keep a foot on the Bay… and come back to see us.</span></p>
-      </a>
+      </div>
     </section>
 
     <section class="sec rv">
@@ -1257,6 +1265,7 @@ body.mapmode footer{display:none}
         <button class="fbtn" data-mapcat="shop">🛒 <span class="fr">Courses</span><span class="en">Shops</span></button>
         <button class="fbtn" data-mapcat="boat">⛴️ <span class="fr">Bateau</span><span class="en">Boat</span></button>
         <button class="fbtn" data-mapcat="bike">🚲 <span class="fr">Vélo</span><span class="en">Bike</span></button>
+        <button class="fbtn" data-mapcat="sunset">🌅 <span class="fr">Couchers de soleil</span><span class="en">Sunsets</span></button>
         <button class="fbtn" data-mapcat="peche">🦀 <span class="fr">Pêche à pied</span><span class="en">Foraging</span></button>
         <button class="fbtn" data-mapcat="health">🏥 <span class="fr">Hôpital</span><span class="en">Hospital</span></button>
       </div>
@@ -2100,8 +2109,8 @@ function renderBrief(){
     rows.push({e:'🌊', cls:'sea', h:t2});
   }
   if (now < sun.set){
-    if (now > sun.set - 4*3600e3) rows.push({e:'🌅', h:T('Coucher du soleil à <b>' + fmtT(sun.set) + '</b>, dans ' + dur(sun.set - now) + '. Nos spots : la plage de la jetée ou la Cabane du Bout.', 'Sunset at <b>' + fmtT(sun.set) + '</b>, in ' + dur(sun.set - now) + '. Our spots: the pier beach or La Cabane du Bout.')});
-    else rows.push({e:'🌅', h:T('Coucher du soleil ce soir à <b>' + fmtT(sun.set) + '</b> — pensez à réserver à la Cabane du Bout pour le spectacle.', 'Sunset tonight at <b>' + fmtT(sun.set) + '</b> — book La Cabane du Bout for the show.')});
+    if (now > sun.set - 4*3600e3) rows.push({e:'🌅', h:T('Coucher du soleil à <b>' + fmtT(sun.set) + '</b>, dans ' + dur(sun.set - now) + '. <a href="#explore/sunset" style="color:var(--accent)">Nos spots préférés →</a>', 'Sunset at <b>' + fmtT(sun.set) + '</b>, in ' + dur(sun.set - now) + '. <a href="#explore/sunset" style="color:var(--accent)">Our favourite spots →</a>')});
+    else rows.push({e:'🌅', h:T('Coucher du soleil ce soir à <b>' + fmtT(sun.set) + '</b> — pensez à réserver à la Cabane du Bout pour le spectacle. <a href="#explore/sunset" style="color:var(--accent)">Les spots →</a>', 'Sunset tonight at <b>' + fmtT(sun.set) + '</b> — book La Cabane du Bout for the show. <a href="#explore/sunset" style="color:var(--accent)">Spots →</a>')});
   } else rows.push({e:'🌙', h:T('Bonne soirée ! Lever du soleil demain à <b>' + fmtT(sunFor(addDays(key, 1)).rise) + '</b>.', 'Have a lovely evening! Sunrise tomorrow at <b>' + fmtT(sunFor(addDays(key, 1)).rise) + '</b>.')});
   var m = marketInfo();
   if (m.open) rows.push({e:'🧺', h:T('<b>Marché ouvert</b> place Weiss jusqu\'à 13h.', '<b>Market open</b> on Place Weiss until 1pm.')});
@@ -2406,6 +2415,7 @@ var XCATS = [
   ['shop', '🛒', 'Faire le plein', 'Shopping', '#9CC77E'],
   ['boat', '⛴️', 'En bateau', 'By boat', '#6FB6E0'],
   ['bike', '🚲', 'À vélo', 'Cycling', '#D07E5F'],
+  ['sunset', '🌅', 'Couchers de soleil', 'Sunset spots', '#F0A070'],
   ['peche', '🦀', 'Pêche à pied', 'Shore foraging', '#5FC2A5'],
   ['health', '🏥', 'Hôpital', 'Hospital', '#E0604B']
 ];
@@ -2418,7 +2428,7 @@ var PLACES = [
     k:{fr:'Baignade · nature', en:'Swim · nature'}, tip:{fr:"Surveillé l'été, à 10 min à vélo.", en:'Lifeguards in summer, 10 min by bike.'}},
   {id:'cabane', cat:'food', e:'🦪', name:{fr:'La Cabane du Bout', en:'La Cabane du Bout'}, lat:44.7643, lon:-1.1511, ig:'lacabanedubout', live:'sunset', dest:'La+Cabane+du+Bout%2C+Rue+du+Port+Ostr%C3%A9icole%2C+33740+Ar%C3%A8s',
     k:{fr:'Huîtres & dîner · Arès', en:'Oysters & dinner · Arès'}, tip:{fr:"Réservation conseillée pour être sûr d'avoir une table — magnifique coucher de soleil sur place 🌅", en:'Booking advised to secure a table — beautiful sunset on site 🌅'}},
-  {id:'hortense', cat:'food', e:'🦪', name:{fr:"La Cabane d'Hortense — Les Youkas", en:"La Cabane d'Hortense — Les Youkas"}, lat:44.6421, lon:-1.2469, ig:'lacabanedhortense', dest:'Rue+des+Tamaris%2C+33970+L%C3%A8ge-Cap-Ferret',
+  {id:'hortense', drive:[32, 23], cat:'food', e:'🦪', name:{fr:"La Cabane d'Hortense — Les Youkas", en:"La Cabane d'Hortense — Les Youkas"}, lat:44.6421, lon:-1.2469, ig:'lacabanedhortense', dest:'Rue+des+Tamaris%2C+33970+L%C3%A8ge-Cap-Ferret',
     k:{fr:'Huîtres · Cap Ferret', en:'Oysters · Cap Ferret'}, tip:{fr:'Au Cap Ferret — une de nos deux préférées.', en:'In Cap Ferret — one of our two favourites.'}},
   {id:'chattard', cat:'food', e:'🍽️', name:{fr:'Le Chat Tard', en:'Le Chat Tard'}, lat:44.7680, lon:-1.1390, dest:'Le+Chat+Tard%2C+4+Avenue+de+Bordeaux%2C+33740+Ar%C3%A8s',
     k:{fr:'Déjeuner', en:'Lunch'}, tip:{fr:"Réservation conseillée — demandez si possible de déjeuner les pieds dans l'eau, sur une balançoire 😉", en:'Booking advised — ask if you can have lunch with your feet in the water, on a swing 😉'}},
@@ -2432,13 +2442,27 @@ var PLACES = [
     k:{fr:'Hypermarché', en:'Hypermarket'}, tip:{fr:'Avenue de Bordeaux — pour tout le reste.', en:'Avenue de Bordeaux — for everything else.'}},
   {id:'andernos', cat:'boat', e:'⛴️', name:{fr:"Jetée d'Andernos", en:'Andernos pier'}, lat:44.7387, lon:-1.1016, dest:'Jet%C3%A9e+d%27Andernos%2C+Andernos-les-Bains',
     k:{fr:'Navettes', en:'Shuttles'}, tip:{fr:'Des navettes (en saison) rejoignent Arcachon ou le Cap Ferret.', en:'Seasonal shuttles to Arcachon or Cap Ferret.'}},
+  {id:'ss-port', cat:'sunset', e:'🌅', name:{fr:"Le bout du port d'Arès", en:'The end of Arès oyster port'}, lat:44.7638, lon:-1.1528, live:'sunsky', dest:'La+Cabane+du+Bout%2C+Rue+du+Port+Ostr%C3%A9icole%2C+33740+Ar%C3%A8s',
+    k:{fr:'Coucher de soleil · Arès', en:'Sunset · Arès'}, tip:{fr:"Au bout du port ostréicole, face aux prés salés : vue dégagée sur le Bassin. Le soir, huîtres ou apéro les pieds dans l'eau à la Cabane du Bout (réservation conseillée).", en:'At the end of the oyster port, facing the salt marshes: an open view over the Bay. In the evening, oysters or drinks by the water at La Cabane du Bout (booking advised).'}},
+  {id:'ss-jetee', cat:'sunset', e:'🌇', name:{fr:"La jetée d'Arès", en:'Arès pier'}, lat:44.7592, lon:-1.1452, walk:15, live:'sunsky', dest:'Jet%C3%A9e+d%27Ar%C3%A8s%2C+33740+Ar%C3%A8s',
+    k:{fr:'Coucher de soleil · à 15 min à pied', en:'Sunset · 15 min walk'}, tip:{fr:"La plus ancienne jetée du Bassin : marchez jusqu'au bout et regardez le soleil descendre derrière la presqu'île. Notre apéro préféré : bières et pizza sur le sable.", en:"The oldest pier on the Bay: walk to the end and watch the sun go down behind the peninsula. Our favourite apéro: beers and pizza on the sand."}},
+  {id:'ss-pres', cat:'sunset', e:'🌾', name:{fr:'Le sentier des prés salés', en:'The salt-marsh trail'}, lat:44.7726, lon:-1.1591, live:'sunsky', dest:'Sentier+des+Pr%C3%A9s+Sal%C3%A9s%2C+Ar%C3%A8s',
+    k:{fr:'Balade du soir · Arès', en:'Evening walk · Arès'}, tip:{fr:'Roseaux, chenaux et oiseaux dans la lumière dorée du soir. Une balade à pied dans la réserve naturelle (on reste sur le sentier).', en:'Reeds, channels and birds in the golden evening light. A walk through the nature reserve (stay on the trail).'}},
+  {id:'ss-andernos', cat:'sunset', e:'🌆', name:{fr:"La jetée d'Andernos", en:'Andernos pier'}, lat:44.7380, lon:-1.1030, live:'sunsky', dest:'Jet%C3%A9e+d%27Andernos%2C+Andernos-les-Bains',
+    k:{fr:'Coucher de soleil · Andernos', en:'Sunset · Andernos'}, tip:{fr:"La jetée avance loin sur l'eau ; le port ostréicole et ses cabanes prennent des teintes chaudes quand la lumière baisse.", en:'The pier reaches far over the water; the oyster port and its huts glow warm as the light drops.'}},
+  {id:'ss-horizon', drive:[28, 21], cat:'sunset', e:'🌊', name:{fr:"Plage de l'Horizon (Cap Ferret)", en:"Plage de l'Horizon (Cap Ferret)"}, lat:44.6549, lon:-1.2594, live:'sunsky', dest:'Plage+de+l%27Horizon%2C+L%C3%A8ge-Cap-Ferret',
+    k:{fr:'Coucher sur l’océan', en:'Ocean sunset'}, tip:{fr:"Côté océan, le soleil plonge dans l'Atlantique. Ambiance bout du monde ; le phare du Cap Ferret (258 marches, vue à 360°) est tout proche.", en:'On the ocean side, the sun sinks into the Atlantic. End-of-the-world feel; the Cap Ferret lighthouse (258 steps, 360° view) is close by.'}},
+  {id:'ss-dune', drive:[58, 69], cat:'sunset', e:'⛰️', name:{fr:'La Dune du Pilat', en:'The Dune du Pilat'}, lat:44.5890, lon:-1.2142, live:'sunsky', dest:'Dune+du+Pilat%2C+La+Teste-de-Buch',
+    k:{fr:'Le grand classique', en:'The great classic'}, tip:{fr:"La plus haute dune d'Europe (106 m), avec le Banc d'Arguin et le Cap Ferret à ses pieds. Comptez la route et la montée ; prenez une lampe pour redescendre.", en:"Europe's highest dune (106 m), with the Banc d'Arguin and Cap Ferret below. Allow for the drive and the climb; bring a torch for the way down."}},
+  {id:'ss-moulleau', drive:[60, 69], cat:'sunset', e:'📸', name:{fr:'Jetée du Moulleau (Arcachon)', en:'Le Moulleau pier (Arcachon)'}, lat:44.6417, lon:-1.2044, live:'sunsky', dest:'Jet%C3%A9e+du+Moulleau%2C+Arcachon',
+    k:{fr:'Le spot des photographes', en:"Photographers' spot"}, tip:{fr:'Jetée en bois face aux passes, avec la Dune du Pilat d’un côté et le phare du Cap Ferret de l’autre.', en:'Wooden pier facing the passes, with the Dune du Pilat on one side and the Cap Ferret lighthouse on the other.'}},
   {id:'pap-ares', cat:'peche', e:'🦀', name:{fr:"L'estran d'Arès", en:'The Arès foreshore'}, lat:44.7588, lon:-1.1445, live:'lowtide', dest:'Jet%C3%A9e+d%27Ar%C3%A8s%2C+33740+Ar%C3%A8s',
     k:{fr:'Pêche à pied · Arès, hors réserve', en:'Foraging · Arès, outside the reserve'},
     tip:{fr:"À marée basse devant Arès : crabe vert (les plus vieux virent à l'orangé), donaces (25 mm minimum) et obione, une plante des prés salés à couper au couteau ou aux ciseaux. L'Office de Tourisme prête des réglettes et organise des sorties avec un guide naturaliste.", en:'At low tide off Arès: green crab (older ones turn orange), donax clams (25 mm minimum) and sea purslane, a salt-marsh plant cut with a knife or scissors. The Tourist Office lends measuring rulers and runs outings with a naturalist guide.'}},
   {id:'pap-betey', cat:'peche', e:'🦐', name:{fr:'Plage du Bétey (Andernos)', en:'Bétey beach (Andernos)'}, lat:44.7335, lon:-1.0920, live:'lowtide', dest:'Plage+du+B%C3%A9tey%2C+Andernos-les-Bains',
     k:{fr:'Pêche à pied · grandes marées', en:'Foraging · big tides'},
     tip:{fr:"Par grand coefficient, l'estran se découvre sur des centaines de mètres : crabes, crevettes grises à l'épuisette (5 cm minimum) et palourdes (3,5 cm pour la japonaise, 4 cm pour la « vraie »).", en:'On big tides the foreshore uncovers for hundreds of metres: crabs, grey shrimp with a hand net (5 cm minimum) and clams (3.5 cm for Japanese, 4 cm for native).'}},
-  {id:'pap-mimbeau', cat:'peche', e:'🐚', name:{fr:'Le Mimbeau (Cap Ferret)', en:'Le Mimbeau (Cap Ferret)'}, lat:44.6374, lon:-1.2462, live:'lowtide', dest:'Avenue+de+la+Conche%2C+33970+L%C3%A8ge-Cap-Ferret',
+  {id:'pap-mimbeau', drive:[33, 23], cat:'peche', e:'🐚', name:{fr:'Le Mimbeau (Cap Ferret)', en:'Le Mimbeau (Cap Ferret)'}, lat:44.6374, lon:-1.2462, live:'lowtide', dest:'Avenue+de+la+Conche%2C+33970+L%C3%A8ge-Cap-Ferret',
     k:{fr:'Pêche à pied · banc de sable', en:'Foraging · sandbank'},
     tip:{fr:'Banc de sable côté Bassin, au bout de la presqu’île : coques (2,7 cm minimum) et palourdes (4 cm) à marée basse. Le spot des connaisseurs du Cap.', en:'Sandbank on the Bay side at the tip of the peninsula: cockles (2.7 cm minimum) and clams (4 cm) at low tide. A spot locals love.'}},
   {id:'pap-rnn', cat:'peche', e:'⛔', no:true, name:{fr:'Réserve des prés salés', en:'Salt-marsh nature reserve'}, lat:44.7713, lon:-1.1619, dest:'Sentier+des+Pr%C3%A9s+Sal%C3%A9s%2C+Ar%C3%A8s',
@@ -2451,6 +2475,7 @@ var PLACES = [
 function km(a, b){ var R = 6371, dLa = (b.lat - a.lat)*Math.PI/180, dLo = (b.lon - a.lon)*Math.PI/180, x = Math.sin(dLa/2)*Math.sin(dLa/2) + Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLo/2)*Math.sin(dLo/2); return 2*R*Math.asin(Math.sqrt(x)); }
 function distTxt(pl){
   if (!pl.lat) return '';
+  if (pl.drive) return '🚗 ' + (pl.drive[0] >= 60 ? T('1 h', '1 h') + (pl.drive[0] > 60 ? ' ' + pad(pl.drive[0] - 60) : '') : pl.drive[0] + ' min') + ' · ' + pl.drive[1] + ' km ' + T('par la route', 'by road');
   var d = km(CFG.home, pl)*1.3, walk = pl.walk || Math.round(d/4.6*60), bike = pl.bike || Math.max(2, Math.round(d/14*60)), car = Math.max(3, Math.round(d/38*60 + 3));
   if (walk <= 35) return '🚶 ' + walk + ' min · 🚲 ' + bike + ' min';
   if (bike <= 35) return '🚲 ' + bike + ' min · 🚗 ' + car + ' min';
@@ -2459,6 +2484,13 @@ function distTxt(pl){
 function liveFor(p){
   if (p.live === 'tide' && S.tide){ var pm = nextPM(Date.now() - 2*3600e3); if (pm) return {c:'', t:'🌊 ' + T('Pleine mer ', 'High tide ') + fmtT(pm.t) + (pm.coef ? ' · coef ' + pm.coef : '')}; }
   if (p.live === 'sunset'){ var sun = sunFor(todayKey()); if (Date.now() < sun.set) return {c:'', t:'🌅 ' + T('Coucher du soleil ', 'Sunset ') + fmtT(sun.set)}; }
+  if (p.live === 'sunsky'){
+    var n0 = Date.now(), sk = todayKey(), sn = sunFor(sk), tm = false;
+    if (n0 > sn.set){ sk = addDays(sk, 1); sn = sunFor(sk); tm = true; }
+    var hh = hoursFrom(sn.set - 3600e3, sn.set + 600e3), ccv = hh.length ? hh[hh.length - 1].cc : null;
+    var sky = ccv == null ? '' : ccv < 30 ? T(' · ciel dégagé ✨', ' · clear sky ✨') : ccv < 70 ? T(' · quelques nuages', ' · some clouds') : T(' · ciel chargé', ' · cloudy');
+    return {c:ccv != null && ccv < 30 ? 'ok' : '', t:'🌅 ' + (tm ? T('Demain ', 'Tomorrow ') : T('Ce soir ', 'Tonight ')) + fmtT(sn.set) + sky};
+  }
   if (p.live === 'lowtide' && S.tide){
     var now = Date.now(), bm = S.tide.ext.filter(function(e){ if (e.type !== 'BM' || e.t < now - 3600e3) return false; var s = sunFor(dayKey(e.t)); return e.t > s.rise + 1800e3 && e.t < s.set - 1800e3; })[0];
     if (bm){ var cf = coefOfDay(dayKey(bm.t)), kd = dayKey(bm.t) === todayKey() ? '' : dayKey(bm.t) === addDays(todayKey(), 1) ? T('demain ', 'tomorrow ') : cap(fmtD(bm.t, {weekday:'short'})) + ' '; return {c:cf && cf >= 80 ? 'ok' : '', t:'🦀 ' + T('Basse mer ', 'Low tide ') + kd + fmtT(bm.t) + (cf ? ' · coef ' + cf + (cf >= 80 ? T(' — idéal', ' — ideal') : '') : '')}; }
@@ -2502,7 +2534,7 @@ function mapPad(){
   var st = $('#xpanel').getAttribute('data-state'), ph = $('#xpanel').offsetHeight || 500, cover = st === 'half' ? ph*.58 : st === 'full' ? ph : 220;
   return {tl:[30, 90], br:[30, Math.round(cover) + 20]};
 }
-function boundsPts(){ return PLACES.filter(function(p){ return p.lat && (S.mapCat === 'all' ? ['hortense', 'pap-mimbeau'].indexOf(p.id) < 0 : p.cat === S.mapCat); }).map(function(p){ return [p.lat, p.lon]; }).concat([[CFG.home.lat, CFG.home.lon]]); }
+function boundsPts(){ return PLACES.filter(function(p){ return p.lat && (S.mapCat === 'all' ? ['hortense', 'pap-mimbeau', 'ss-horizon', 'ss-dune', 'ss-moulleau'].indexOf(p.id) < 0 : p.cat === S.mapCat); }).map(function(p){ return [p.lat, p.lon]; }).concat([[CFG.home.lat, CFG.home.lon]]); }
 function initMap(){
   if (MAP) return Promise.resolve();
   return loadLeaflet().then(function(){
@@ -3000,8 +3032,9 @@ function route(){
   $$('.dock button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-go') === v); });
   moveInd();
   if (changed) window.scrollTo(0, 0);
+  if (v === 'explore' && anchor && XCAT[anchor]){ S.mapCat = anchor; $$('#mapFilters .fbtn').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-mapcat') === anchor); }); if (MAP){ applyMapFilter(); MAP.sel = null; setTimeout(function(){ fitMap(false); }, 300); } anchor = null; }
   if (v === 'explore') exploreEnter(); else exploreLeave();
-  fitScenes(); onScroll();
+  fitScenes(); onScroll(); sizeIg();
   if (anchor) setTimeout(function(){ var a = document.getElementById(anchor); if (a) a.scrollIntoView({behavior:RM ? 'auto' : 'smooth', block:'start'}); }, 140);
   observeReveal();
 }
@@ -3114,7 +3147,9 @@ function onScroll(){
   if (sc && !RM && y < 900) sc.style.transform = 'translateY(' + (y*.35).toFixed(1) + 'px)';
 }
 window.addEventListener('scroll', function(){ if (ticking) return; ticking = true; requestAnimationFrame(function(){ onScroll(); ticking = false; }); }, {passive:true});
-window.addEventListener('resize', function(){ moveInd(); fitScenes(); });
+/* L'aperçu Instagram (profil + 6 dernières publications) garde ses proportions */
+function sizeIg(){ var f = $('#igFrame'); if (!f || !f.clientWidth) return; f.style.height = Math.round(132 + f.clientWidth*2/3) + 'px'; }
+window.addEventListener('resize', function(){ moveInd(); fitScenes(); sizeIg(); });
 window.addEventListener('hashchange', route);
 
 /* ================= DÉMARRAGE ================= */
