@@ -608,6 +608,47 @@ html[data-theme=light] .leaflet-tile-pane{filter:saturate(.7) sepia(.08) contras
 .home-sel .hp-dot{transform:scale(1.15)}
 .home-card{background:linear-gradient(140deg,color-mix(in srgb,var(--gold) 16%,var(--card-solid)),var(--card-solid))!important;border-color:color-mix(in srgb,var(--gold) 40%,transparent)!important}
 
+/* ---------- Instagram ---------- */
+.igcard{display:block;padding:16px;border-radius:24px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow-s);position:relative;overflow:hidden}
+.igcard::before{content:"";position:absolute;inset:0;border-radius:24px;padding:1.5px;background:linear-gradient(45deg,#F9CE34,#EE2A7B,#6228D7);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.ig-top{display:flex;align-items:center;gap:12px}
+.ig-av{flex:none;width:52px;height:52px;border-radius:50%;padding:2.5px;background:conic-gradient(from 210deg,#F9CE34,#EE2A7B,#6228D7,#F9CE34)}
+.ig-av>span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:#0E151D;border:2.5px solid var(--card-solid)}
+.ig-av svg{width:28px;height:28px}
+.ig-av.sm{width:42px;height:42px}
+.ig-av.sm svg{width:22px;height:22px}
+.ig-id{flex:1;min-width:0}
+.ig-id b{display:block;font-size:15px}
+.ig-id small{display:block;font-size:12px;color:var(--muted)}
+.ig-btn{flex:none;padding:9px 16px;border-radius:12px;background:linear-gradient(45deg,#F58529,#DD2A7B 50%,#8134AF);color:#fff;font-size:13px;font-weight:700;box-shadow:0 8px 18px -8px rgba(221,42,123,.7)}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px}
+.ig-grid>span{position:relative;aspect-ratio:1;border-radius:12px;display:grid;place-items:center;overflow:hidden}
+.ig-grid i{font-style:normal;font-size:30px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.3))}
+.ig-grid small{position:absolute;left:6px;right:6px;bottom:6px;font-size:10.5px;font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5);text-align:center}
+.igcard p{margin:12px 2px 0;font-size:14px;color:var(--soft);line-height:1.5}
+.igmini{display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px;border-radius:16px;background:var(--card-alt);border:1px solid var(--line)}
+.igmini>span:nth-child(2){flex:1;min-width:0}
+.igmini b{display:block;font-size:14px}
+.igmini small{display:block;font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
+.igmini .ig-btn{padding:8px 12px;font-size:12px}
+.story.ig .ring{background:conic-gradient(from 210deg,#F9CE34,#EE2A7B,#6228D7,#F9CE34)}
+.story.ig .ph{background:#0E151D}
+.story.ares .ring{background:conic-gradient(from 200deg,#4FA3BC,#E8CF9C,#4FA3BC);padding:3.5px;position:relative}
+.sbadge{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);white-space:nowrap;padding:2px 7px;border-radius:99px;background:#E8CF9C;color:#14100A;font:800 9.5px/1.3 var(--sans);box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.story.ares small{margin-top:10px;color:var(--accent)}
+.tag.ville{background:rgba(79,163,188,.92);color:#fff;border-color:transparent}
+.ag-item.ares{border-color:color-mix(in srgb,var(--gold) 45%,transparent);background:linear-gradient(140deg,color-mix(in srgb,var(--gold) 10%,var(--card-solid)),var(--card-solid))}
+.by-ares{color:var(--accent);font-weight:700}
+/* ---------- Pêche à pied & hôpital ---------- */
+.pin.no{background:linear-gradient(140deg,#F08A6E,#B0402E)}
+.place.no{border-color:color-mix(in srgb,var(--red) 40%,transparent)}
+.place.no .k{color:var(--red)}
+.xrules{margin:0 2px 12px;padding:14px 16px;border-radius:18px;background:linear-gradient(140deg,color-mix(in srgb,#5FC2A5 14%,var(--card-solid)),var(--card-solid));border:1px solid color-mix(in srgb,#5FC2A5 35%,transparent);font-size:13px;color:var(--soft)}
+.xrules b{display:block;font-size:14px;color:var(--text);margin-bottom:6px}
+.xrules ul{margin:0 0 8px;padding-left:18px;line-height:1.5}
+.xrules li{margin-bottom:4px}
+.xrules a{color:var(--accent);font-weight:700;font-size:12.5px}
+
 /* ---------- Guides interactifs ---------- */
 .gp{position:fixed;inset:0;z-index:210;display:none;background:color-mix(in srgb,var(--page) 55%,rgba(0,0,0,.5));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .gp.on{display:flex;align-items:stretch;justify-content:center;animation:svIn .35s var(--ease)}
@@ -811,7 +852,9 @@ body.mapmode footer{display:none}
   .feat p{font-size:15px}
   .seg{display:none}
   .live-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
-  .live-grid>.card{margin:0}
+  .live-grid>.card{margin:0;display:flex;flex-direction:column}
+  .live-grid{align-items:stretch!important}
+  .live-grid>.card>.fine:last-child{margin-top:auto!important;padding-top:16px}
   .live-grid>*,.home-grid>*,.news-grid>*{min-width:0}
   .card{padding:22px}
   .card.brief{padding:6px 24px}
@@ -1003,6 +1046,23 @@ body.mapmode footer{display:none}
     </section>
 
     <section class="sec rv">
+      <div class="sec-h"><div><span class="kicker">Instagram</span><h2><span class="fr">Suivez <em>le Cocon</em></span><span class="en">Follow <em>the Cocon</em></span></h2></div></div>
+      <a class="igcard" href="https://www.instagram.com/tinyhouse.33740/" target="_blank" rel="noopener">
+        <div class="ig-top">
+          <span class="ig-av"><span><svg viewBox="0 0 64 64"><circle cx="40" cy="22" r="8" fill="#E8CF9C"/><path d="M8 40c6-6 12-6 18 0s12 6 18 0 9-5 12-3" stroke="#C9A96E" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span></span>
+          <div class="ig-id"><b>@tinyhouse.33740</b><small>Le Cocon du Bassin · Arès</small></div>
+          <span class="ig-btn"><span class="fr">S'abonner</span><span class="en">Follow</span></span>
+        </div>
+        <div class="ig-grid">
+          <span style="background:linear-gradient(160deg,#F6C77E,#C9845A 55%,#3D4955)"><i>🌅</i><small><span class="fr">Couchers de soleil</span><span class="en">Sunsets</span></small></span>
+          <span style="background:linear-gradient(160deg,#9FD0E2,#4F8FA8 60%,#2F5B6B)"><i>🦪</i><small><span class="fr">Nos cabanes</span><span class="en">Oyster shacks</span></small></span>
+          <span style="background:linear-gradient(160deg,#E9DFC8,#B98A5C 60%,#5C4636)"><i>🏡</i><small><span class="fr">La vie au Cocon</span><span class="en">Life at the Cocon</span></small></span>
+        </div>
+        <p><span class="fr">Nos coins préférés du Bassin, les coulisses du Cocon et nos nouveautés. Abonnez-vous pour garder un pied sur le Bassin… et revenir nous voir.</span><span class="en">Our favourite spots around the Bay, behind the scenes at the Cocon and what's new. Follow us to keep a foot on the Bay… and come back to see us.</span></p>
+      </a>
+    </section>
+
+    <section class="sec rv">
       <div class="card">
         <span class="kicker"><span class="fr">Un dernier mot</span><span class="en">One last word</span></span>
         <p class="note fr" style="margin:0">Un souci, une question ? Écrivez-nous pendant votre séjour — tout se règle vite. <b>Merci, et à bientôt sur le Bassin !</b></p>
@@ -1157,14 +1217,7 @@ body.mapmode footer{display:none}
   </div>
   <div class="wrap after-hero">
     <p class="lead"><span class="fr">Ce qui se passe à Arès et sur le Bassin, résumé pour vous à partir des sources locales.</span><span class="en">What's happening in Arès and around the Bay, summarised from local sources (articles in French).</span></p>
-    <div class="news-top">
-      <div class="synth" id="nStats"><div class="stat sk" style="height:92px"></div><div class="stat sk" style="height:92px"></div><div class="stat sk" style="height:92px"></div></div>
-      <div class="card" style="padding:16px 18px">
-        <span class="kicker" style="margin-bottom:4px"><span class="fr">De quoi parle le Bassin cette semaine</span><span class="en">What the Bay is talking about</span></span>
-        <div class="topics" id="nTopics"><i class="sk" style="flex:1"></i></div>
-        <div class="legend" id="nLegend"></div>
-      </div>
-    </div>
+    <div class="synth" id="nStats"><div class="stat sk" style="height:92px"></div><div class="stat sk" style="height:92px"></div><div class="stat sk" style="height:92px"></div></div>
     <section class="sec">
       <div class="sec-h"><div><span class="kicker">Stories</span><h2><span class="fr">À la <em>une</em></span><span class="en">Top <em>stories</em></span></h2></div></div>
       <div class="stories" id="newsStories"></div>
@@ -1204,6 +1257,8 @@ body.mapmode footer{display:none}
         <button class="fbtn" data-mapcat="shop">🛒 <span class="fr">Courses</span><span class="en">Shops</span></button>
         <button class="fbtn" data-mapcat="boat">⛴️ <span class="fr">Bateau</span><span class="en">Boat</span></button>
         <button class="fbtn" data-mapcat="bike">🚲 <span class="fr">Vélo</span><span class="en">Bike</span></button>
+        <button class="fbtn" data-mapcat="peche">🦀 <span class="fr">Pêche à pied</span><span class="en">Foraging</span></button>
+        <button class="fbtn" data-mapcat="health">🏥 <span class="fr">Hôpital</span><span class="en">Hospital</span></button>
       </div>
       <div class="xlist" id="xlist"></div>
     </aside>
@@ -1356,6 +1411,7 @@ body.mapmode footer{display:none}
           <label class="check"><input type="checkbox" data-chk="velux"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="#0E141B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><span class="fr">Fermer le Velux</span><span class="en">Close the roof window</span></span></label>
           <label class="check"><input type="checkbox" data-chk="clim"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="#0E141B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><span class="fr">Éteindre la climatisation</span><span class="en">Switch off the AC</span></span><button class="mini-link" data-guide="clim" data-gstep="3">▶ <span class="fr">Comment ?</span><span class="en">How?</span></button></label>
           <div class="done-msg" id="chkDone"></div>
+          <a class="igmini" href="https://www.instagram.com/tinyhouse.33740/" target="_blank" rel="noopener"><span class="ig-av sm"><span><svg viewBox="0 0 64 64"><circle cx="40" cy="22" r="8" fill="#E8CF9C"/><path d="M8 40c6-6 12-6 18 0s12 6 18 0 9-5 12-3" stroke="#C9A96E" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span></span><span><b><span class="fr">Gardez le Cocon près de vous</span><span class="en">Keep the Cocon close</span></b><small><span class="fr">Partagez vos photos avec @tinyhouse.33740 et suivez-nous pour revenir sur le Bassin.</span><span class="en">Share your photos with @tinyhouse.33740 and follow us to come back to the Bay.</span></small></span><span class="ig-btn"><span class="fr">Suivre</span><span class="en">Follow</span></span></a>
         </div>
       </section>
 
@@ -1369,7 +1425,7 @@ body.mapmode footer{display:none}
             <a href="tel:15"><b>15</b>SAMU</a>
             <a href="tel:196"><b>196</b><span class="fr">Secours en mer</span><span class="en">Sea rescue</span></a>
             <a href="tel:3237"><b>3237</b><span class="fr">Pharmacie de garde</span><span class="en">On-duty pharmacy</span></a>
-            <a href="tel:0556038700" class="wide"><b>05 56 03 87 00</b><span class="fr">Hôpital (24h/24)</span><span class="en">Hospital (24/7)</span></a>
+            <a href="tel:0556038700" class="wide"><b>05 56 03 87 00</b><span class="fr">Hôpital Privé Wallerstein, Arès (urgences)</span><span class="en">Wallerstein Hospital, Arès (emergency)</span></a>
           </div>
         </div>
       </section>
@@ -1381,6 +1437,7 @@ body.mapmode footer{display:none}
 <footer>
   <b>Le Cocon du Bassin</b>
   Arès · Bassin d'Arcachon<br>
+  <a href="https://www.instagram.com/tinyhouse.33740/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700">Instagram · @tinyhouse.33740</a><br>
   <span class="fr">Données en direct :</span><span class="en">Live data:</span> SHOM · Open-Meteo · Ville d'Arès · TVBA · Vivre le Bassin · OpenStreetMap
 </footer>
 </div>
@@ -1393,20 +1450,6 @@ body.mapmode footer{display:none}
   <button data-go="explore"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg><span class="fr">Explorer</span><span class="en">Explore</span></button>
   <button data-go="stay"><svg viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.2"/><path d="M10.6 12.6L20 3.2M16.5 6.7l2.6 2.6M14 9.2l2.2 2.2"/></svg><span class="fr">Séjour</span><span class="en">Stay</span></button>
 </nav>
-
-<button class="sos-fab" data-sos aria-label="Urgences / Emergency">SOS</button>
-<div class="sheet" id="sos" role="dialog" aria-label="Urgences">
-  <div class="grab"></div>
-  <h3 class="serif" style="font-size:24px;margin:0 0 6px"><span class="fr">Numéros d'urgence</span><span class="en">Emergency numbers</span></h3>
-  <a class="sos-row" href="tel:112"><span><span class="fr">Urgences</span><span class="en">Emergency</span><small><span class="fr">Numéro européen, 24h/24</span><span class="en">European number, 24/7</span></small></span><b>112</b></a>
-  <a class="sos-row" href="tel:15"><span>SAMU<small><span class="fr">Urgence médicale</span><span class="en">Medical emergency</span></small></span><b>15</b></a>
-  <a class="sos-row" href="tel:196"><span><span class="fr">Secours en mer</span><span class="en">Sea rescue</span><small>CROSS</small></span><b>196</b></a>
-  <a class="sos-row" href="tel:3237"><span><span class="fr">Pharmacie de garde</span><span class="en">On-duty pharmacy</span></span><b>3237</b></a>
-  <a class="sos-row" href="tel:0556038700"><span><span class="fr">Hôpital (24h/24)</span><span class="en">Hospital (24/7)</span></span><b style="font-size:17px">05 56 03 87 00</b></a>
-  <a class="sos-row" data-msg href="https://www.airbnb.fr/guest/messages" target="_blank" rel="noopener"><span><span class="fr">Vos hôtes</span><span class="en">Your hosts</span><small><span class="fr">Messagerie Airbnb</span><span class="en">Airbnb messages</span></small></span><b style="font-size:22px">💬</b></a>
-</div>
-<div class="sheet-bg" id="sheetBg" data-close></div>
-
 <div class="sv" id="sv" aria-modal="true" role="dialog">
   <div class="sv-frame">
     <div class="sv-bg" id="svBg"></div>
@@ -1923,12 +1966,15 @@ function agendaItems(){
   var now = Date.now(), ts = dayStart(todayKey()), lim = now + 21*864e5;
   return (S.news || []).filter(function(it){ return it.ev && it.ev.end >= now - 3600e3 && it.ev.start <= lim && it.ev.end >= ts; }).sort(function(a, b){ return a.ev.start - b.ev.start; });
 }
+/* Annonces à venir de la Ville d'Arès : toujours en tête */
+function aresUpcoming(){ var now = Date.now(); return (S.news || []).filter(function(it){ return it.src === 'ares' && it.ev && it.ev.end >= now - 3600e3 && it.ev.start <= now + 60*864e5; }).sort(function(a, b){ return a.ev.start - b.ev.start; }); }
 function storyItems(){
-  var now = Date.now();
-  return (S.news || []).filter(function(it){ return it.img && (it.pub > now - 10*864e5 || (it.ev && it.ev.start < now + 10*864e5)); }).map(function(it){
+  var now = Date.now(), first = aresUpcoming().filter(function(it){ return it.img; });
+  var rest = (S.news || []).filter(function(it){ return it.img && (it.pub > now - 10*864e5 || (it.ev && it.ev.start < now + 10*864e5)); }).map(function(it){
     var age = (now - it.pub)/3600e3, sc = Math.max(0, 96 - age)/96*50 + (it.town && it.town.km === 0 ? 30 : 0) + (it.ev ? 18 : 0) + (it.cat === 'alert' ? 40 : 0);
     return {it:it, sc:sc};
-  }).sort(function(a, b){ return b.sc - a.sc; }).slice(0, 10).map(function(x){ return x.it; });
+  }).sort(function(a, b){ return b.sc - a.sc; }).map(function(x){ return x.it; }).filter(function(it){ return first.indexOf(it) < 0; });
+  return first.concat(rest).slice(0, 12);
 }
 function whenTxt(ev){
   if (!ev) return ''; var now = Date.now(), k = dayKey(ev.start);
@@ -1944,7 +1990,8 @@ function bgImg(u){ return u ? "background-image:url('" + String(u).replace(/'/g,
 function seenSet(){ return store.get('cocon.seen') || []; }
 function storiesHTML(list){
   var seen = seenSet();
-  return list.map(function(it, i){ var C = CAT_BY[it.cat] || CAT_BY.news; return '<button class="story' + (seen.indexOf(it.id) >= 0 ? ' seen' : '') + '" data-story="' + i + '"><div class="ring"><div class="ph" style="' + bgImg(it.img) + '"></div></div><small>' + C[1] + ' ' + esc(it.town && it.town.km === 0 ? 'Arès' : T(C[2], C[3])) + '</small></button>'; }).join('');
+  var ig = '<a class="story ig" href="https://www.instagram.com/tinyhouse.33740/" target="_blank" rel="noopener"><div class="ring"><div class="ph"><svg viewBox="0 0 64 64" width="34" height="34"><circle cx="40" cy="22" r="8" fill="#E8CF9C"/><path d="M8 40c6-6 12-6 18 0s12 6 18 0 9-5 12-3" stroke="#C9A96E" stroke-width="5" fill="none" stroke-linecap="round"/></svg></div></div><small>Le Cocon</small></a>';
+  return ig + list.map(function(it, i){ var C = CAT_BY[it.cat] || CAT_BY.news, ar = it.src === 'ares' && it.ev && it.ev.end >= Date.now() - 3600e3; return '<button class="story' + (ar ? ' ares' : '') + (seen.indexOf(it.id) >= 0 && !ar ? ' seen' : '') + '" data-story="' + i + '"><div class="ring"><div class="ph" style="' + bgImg(it.img) + '"></div>' + (ar ? '<span class="sbadge">' + esc(it.ev.range && it.ev.start < Date.now() ? '→ ' + fmtD(it.ev.end, {day:'numeric', month:'short'}) : fmtD(it.ev.start, {day:'numeric', month:'short'})) + '</span>' : '') + '</div><small>' + (ar ? '🏛️ Arès' : C[1] + ' ' + esc(it.town && it.town.km === 0 ? 'Arès' : T(C[2], C[3]))) + '</small></button>'; }).join('');
 }
 function renderNews(){
   var hs = $('#homeStories'), ns = $('#newsStories');
@@ -1956,21 +2003,21 @@ function renderNews(){
   var st = storyItems(); S.stories = st;
   hs.innerHTML = storiesHTML(st); ns.innerHTML = storiesHTML(st);
   // à la une (accueil)
-  var ag = agendaItems(), feat = ag.filter(function(it){ return it.img && it.town && it.town.km === 0; })[0] || st[0];
+  var ag = agendaItems(), au = aresUpcoming(), feat = au.filter(function(it){ return it.img; })[0] || ag.filter(function(it){ return it.img && it.town && it.town.km === 0; })[0] || st[0];
   if (feat){
     var fi = st.indexOf(feat);
-    $('#homeFeat').innerHTML = '<a class="feat" href="' + esc(linkOf(feat)) + '" target="_blank" rel="noopener" style="' + bgImg(feat.img) + '"' + (fi >= 0 ? ' data-story="' + fi + '"' : '') + '><div class="feat-in"><div class="tags">' + (feat.ev ? '<span class="tag when">📅 ' + esc(whenTxt(feat.ev)) + '</span>' : '') + catTag(feat.cat) + townTag(feat.town) + '</div><h3>' + esc(feat.title) + '</h3><p>' + esc(feat.ex) + '</p></div></a>';
+    $('#homeFeat').innerHTML = '<a class="feat" href="' + esc(linkOf(feat)) + '" target="_blank" rel="noopener" style="' + bgImg(feat.img) + '"' + (fi >= 0 ? ' data-story="' + fi + '"' : '') + '><div class="feat-in"><div class="tags">' + (feat.src === 'ares' ? '<span class="tag ville">🏛️ ' + T("La Ville d'Arès annonce", 'Arès town hall') + '</span>' : '') + (feat.ev ? '<span class="tag when">📅 ' + esc(whenTxt(feat.ev)) + '</span>' : '') + catTag(feat.cat) + (feat.src === 'ares' ? '' : townTag(feat.town)) + '</div><h3>' + esc(feat.title) + '</h3><p>' + esc(feat.ex) + '</p></div></a>';
   }
-  var nx = ag.filter(function(it){ return it !== feat; }).slice(0, matchMedia('(min-width:700px)').matches ? 5 : 3);
-  $('#homeNext').innerHTML = nx.length ? '<span class="kicker" style="margin:6px 4px 10px">' + T('Prochainement', 'Coming up') + '</span>' + nx.map(agItem).join('') : '';
+  var nmax = matchMedia('(min-width:700px)').matches ? 5 : 3, nx = au.filter(function(it){ return it !== feat; }).concat(ag.filter(function(it){ return it !== feat && au.indexOf(it) < 0; })).slice(0, nmax);
+  $('#homeNext').innerHTML = nx.length ? '<span class="kicker" style="margin:6px 4px 10px">' + T('Prochainement', 'Coming up') + '</span>' + nx.map(function(it){ return agItem(it, true); }).join('') : '';
   // synthèse
   var items = newsItems(), week = items.filter(function(it){ return it.pub > Date.now() - 7*864e5; }), ares = (S.news || []).filter(function(it){ return it.town && it.town.km === 0 && ((it.id.indexOf('ev-') !== 0 && it.pub > Date.now() - 7*864e5) || ag.indexOf(it) >= 0); });
   $('#nStats').innerHTML = '<div class="stat"><b data-count="' + week.length + '">0</b><span>' + T('actus cette semaine', 'stories this week') + '</span></div><div class="stat"><b data-count="' + ag.length + '">0</b><span>' + T('sorties à venir', 'upcoming events') + '</span></div><div class="stat"><b data-count="' + ares.length + '">0</b><span>' + T('à Arès même', 'right in Arès') + '</span></div>';
   $$('#nStats [data-count]').forEach(function(el){ countUp(el, +el.dataset.count); });
   var cnt = {}; (S.news || []).forEach(function(it){ if ((it.id.indexOf('ev-') !== 0 && it.pub > Date.now() - 14*864e5) || ag.indexOf(it) >= 0) cnt[it.cat] = (cnt[it.cat] || 0) + 1; });
   var keys = Object.keys(cnt).sort(function(a, b){ return cnt[b] - cnt[a]; });
-  $('#nTopics').innerHTML = keys.map(function(k){ return '<i style="flex-grow:' + cnt[k] + ';background:' + CAT_BY[k][4] + '"></i>'; }).join('');
-  $('#nLegend').innerHTML = keys.map(function(k){ return '<span><i style="background:' + CAT_BY[k][4] + '"></i>' + CAT_BY[k][1] + ' ' + T(CAT_BY[k][2], CAT_BY[k][3]) + ' <b style="color:var(--muted)">' + cnt[k] + '</b></span>'; }).join('');
+  if ($('#nTopics')) $('#nTopics').innerHTML = keys.map(function(k){ return '<i style="flex-grow:' + cnt[k] + ';background:' + CAT_BY[k][4] + '"></i>'; }).join('');
+  if ($('#nLegend')) $('#nLegend').innerHTML = keys.map(function(k){ return '<span><i style="background:' + CAT_BY[k][4] + '"></i>' + CAT_BY[k][1] + ' ' + T(CAT_BY[k][2], CAT_BY[k][3]) + ' <b style="color:var(--muted)">' + cnt[k] + '</b></span>'; }).join('');
   // agenda
   var ts = dayStart(todayKey()), ongoing = ag.filter(function(it){ return it.ev.range && it.ev.start < ts; }), upcoming = ag.filter(function(it){ return ongoing.indexOf(it) < 0; });
   $('#ongoingWrap').innerHTML = ongoing.length ? '<span class="kicker" style="margin:0 4px 10px">' + T('En ce moment', 'On now') + '</span><div class="ongoing">' + ongoing.map(function(it){ var C = CAT_BY[it.cat] || CAT_BY.news; return '<a class="og" href="' + esc(linkOf(it)) + '" target="_blank" rel="noopener"><small>' + C[1] + ' ' + esc(whenTxt(it.ev)) + '</small><h4>' + esc(it.title) + '</h4>' + townTag(it.town) + '</a>'; }).join('') + '</div>' : '';
@@ -1979,10 +2026,11 @@ function renderNews(){
   $('#agenda').innerHTML = order.length ? order.map(function(k){ return '<div class="ag-day"><b>' + esc(dayLabel(k)) + '</b><span>' + groups[k].length + ' ' + T(groups[k].length > 1 ? 'rendez-vous' : 'rendez-vous', groups[k].length > 1 ? 'events' : 'event') + '</span></div>' + groups[k].map(agItem).join(''); }).join('') : '<div class="empty">' + T('Rien de prévu dans l\'agenda pour l\'instant — consultez ', 'Nothing in the calendar yet — check ') + '<a href="https://www.ares-tourisme.com/agenda" target="_blank" rel="noopener">ares-tourisme.com</a></div>';
   renderFeed();
 }
-function agItem(it){
-  var C = CAT_BY[it.cat] || CAT_BY.news, ev = it.ev;
-  var tm = ev.range ? (ev.start <= Date.now() ? T('En cours', 'On now') : T("Jusqu'au", 'Until') + '<br>' + fmtD(ev.end, {day:'numeric', month:'short'})) : ev.time ? fmtT(ev.start) : T('Journée', 'All day');
-  return '<a class="ag-item" href="' + esc(linkOf(it)) + '" target="_blank" rel="noopener"><span class="ag-time"><span class="e">' + C[1] + '</span>' + tm + '</span><span><h4>' + esc(it.title) + '</h4><span class="sub">' + (it.town ? '<span>📍 ' + (it.town.km === 0 ? T('À Arès', 'In Arès') : esc(it.town.n)) + '</span>' : '') + (ev.range ? '<span>' + esc(whenTxt(ev)) + '</span>' : '') + (it.cost ? '<span>🎟 ' + esc(it.cost) + '</span>' : '') + '<span>' + esc(it.srcName) + '</span></span></span><span class="go">›</span></a>';
+function agItem(it, withDate){
+  var C = CAT_BY[it.cat] || CAT_BY.news, ev = it.ev, k = dayKey(ev.start);
+  var dl = k === todayKey() ? T('Auj.', 'Today') : k === addDays(todayKey(), 1) ? T('Demain', 'Tmrw') : fmtD(ev.start, {day:'numeric', month:'short'});
+  var tm = ev.range ? (ev.start <= Date.now() ? T('En cours', 'On now') : T("Jusqu'au", 'Until') + '<br>' + fmtD(ev.end, {day:'numeric', month:'short'})) : withDate ? dl + (ev.time ? '<br>' + fmtT(ev.start) : '') : ev.time ? fmtT(ev.start) : T('Journée', 'All day');
+  return '<a class="ag-item' + (it.src === 'ares' ? ' ares' : '') + '" href="' + esc(linkOf(it)) + '" target="_blank" rel="noopener"><span class="ag-time"><span class="e">' + C[1] + '</span>' + tm + '</span><span><h4>' + esc(it.title) + '</h4><span class="sub">' + (it.town ? '<span>📍 ' + (it.town.km === 0 ? T('À Arès', 'In Arès') : esc(it.town.n)) + '</span>' : '') + (ev.range ? '<span>' + esc(whenTxt(ev)) + '</span>' : '') + (it.cost ? '<span>🎟 ' + esc(it.cost) + '</span>' : '') + '<span' + (it.src === 'ares' ? ' class="by-ares"' : '') + '>' + (it.src === 'ares' ? '🏛️ ' : '') + esc(it.srcName) + '</span></span></span><span class="go">›</span></a>';
 }
 function renderFeed(){
   var items = newsItems(), f = S.filter, cnt = {};
@@ -2357,7 +2405,9 @@ var XCATS = [
   ['food', '🦪', 'Manger & boire', 'Eat & drink', '#E0B07C'],
   ['shop', '🛒', 'Faire le plein', 'Shopping', '#9CC77E'],
   ['boat', '⛴️', 'En bateau', 'By boat', '#6FB6E0'],
-  ['bike', '🚲', 'À vélo', 'Cycling', '#D07E5F']
+  ['bike', '🚲', 'À vélo', 'Cycling', '#D07E5F'],
+  ['peche', '🦀', 'Pêche à pied', 'Shore foraging', '#5FC2A5'],
+  ['health', '🏥', 'Hôpital', 'Hospital', '#E0604B']
 ];
 var XCAT = {}; XCATS.forEach(function(c){ XCAT[c[0]] = c; });
 var PLACES = [
@@ -2382,6 +2432,19 @@ var PLACES = [
     k:{fr:'Hypermarché', en:'Hypermarket'}, tip:{fr:'Avenue de Bordeaux — pour tout le reste.', en:'Avenue de Bordeaux — for everything else.'}},
   {id:'andernos', cat:'boat', e:'⛴️', name:{fr:"Jetée d'Andernos", en:'Andernos pier'}, lat:44.7387, lon:-1.1016, dest:'Jet%C3%A9e+d%27Andernos%2C+Andernos-les-Bains',
     k:{fr:'Navettes', en:'Shuttles'}, tip:{fr:'Des navettes (en saison) rejoignent Arcachon ou le Cap Ferret.', en:'Seasonal shuttles to Arcachon or Cap Ferret.'}},
+  {id:'pap-ares', cat:'peche', e:'🦀', name:{fr:"L'estran d'Arès", en:'The Arès foreshore'}, lat:44.7588, lon:-1.1445, live:'lowtide', dest:'Jet%C3%A9e+d%27Ar%C3%A8s%2C+33740+Ar%C3%A8s',
+    k:{fr:'Pêche à pied · Arès, hors réserve', en:'Foraging · Arès, outside the reserve'},
+    tip:{fr:"À marée basse devant Arès : crabe vert (les plus vieux virent à l'orangé), donaces (25 mm minimum) et obione, une plante des prés salés à couper au couteau ou aux ciseaux. L'Office de Tourisme prête des réglettes et organise des sorties avec un guide naturaliste.", en:'At low tide off Arès: green crab (older ones turn orange), donax clams (25 mm minimum) and sea purslane, a salt-marsh plant cut with a knife or scissors. The Tourist Office lends measuring rulers and runs outings with a naturalist guide.'}},
+  {id:'pap-betey', cat:'peche', e:'🦐', name:{fr:'Plage du Bétey (Andernos)', en:'Bétey beach (Andernos)'}, lat:44.7335, lon:-1.0920, live:'lowtide', dest:'Plage+du+B%C3%A9tey%2C+Andernos-les-Bains',
+    k:{fr:'Pêche à pied · grandes marées', en:'Foraging · big tides'},
+    tip:{fr:"Par grand coefficient, l'estran se découvre sur des centaines de mètres : crabes, crevettes grises à l'épuisette (5 cm minimum) et palourdes (3,5 cm pour la japonaise, 4 cm pour la « vraie »).", en:'On big tides the foreshore uncovers for hundreds of metres: crabs, grey shrimp with a hand net (5 cm minimum) and clams (3.5 cm for Japanese, 4 cm for native).'}},
+  {id:'pap-mimbeau', cat:'peche', e:'🐚', name:{fr:'Le Mimbeau (Cap Ferret)', en:'Le Mimbeau (Cap Ferret)'}, lat:44.6374, lon:-1.2462, live:'lowtide', dest:'Avenue+de+la+Conche%2C+33970+L%C3%A8ge-Cap-Ferret',
+    k:{fr:'Pêche à pied · banc de sable', en:'Foraging · sandbank'},
+    tip:{fr:'Banc de sable côté Bassin, au bout de la presqu’île : coques (2,7 cm minimum) et palourdes (4 cm) à marée basse. Le spot des connaisseurs du Cap.', en:'Sandbank on the Bay side at the tip of the peninsula: cockles (2.7 cm minimum) and clams (4 cm) at low tide. A spot locals love.'}},
+  {id:'pap-rnn', cat:'peche', e:'⛔', no:true, name:{fr:'Réserve des prés salés', en:'Salt-marsh nature reserve'}, lat:44.7713, lon:-1.1619, dest:'Sentier+des+Pr%C3%A9s+Sal%C3%A9s%2C+Ar%C3%A8s',
+    k:{fr:'Pêche interdite', en:'No foraging'}, tip:{fr:'Réserve naturelle nationale : la pêche à pied y est interdite. Le sentier des prés salés permet de la découvrir à pied.', en:'National nature reserve: foraging is forbidden here. The salt-marsh trail lets you discover it on foot.'}},
+  {id:'hopital', cat:'health', e:'🏥', name:{fr:'Hôpital Privé Wallerstein', en:'Wallerstein Private Hospital'}, lat:44.7542, lon:-1.1290, tel:'0556038700', telTxt:'05 56 03 87 00', dest:'H%C3%B4pital+Priv%C3%A9+Wallerstein%2C+14+bis+Boulevard+Javal%2C+33740+Ar%C3%A8s',
+    k:{fr:'Urgences · Arès', en:'Emergency department · Arès'}, tip:{fr:'14 bis boulevard Javal, Arès. Service d’urgences. En cas d’urgence vitale, appelez le 15 ou le 112.', en:'14 bis boulevard Javal, Arès. Emergency department. In a life-threatening emergency, call 15 or 112.'}},
   {id:'velo', cat:'bike', e:'🚲', name:{fr:'Le tour du Bassin à vélo', en:'Round-the-Bay cycle loop'}, url:BIKE_URL,
     k:{fr:'Piste cyclable', en:'Cycle path'}, tip:{fr:'Arès est sur la piste cyclable du tour du Bassin.', en:"Arès sits on the Bay's cycle loop."}}
 ];
@@ -2396,14 +2459,18 @@ function distTxt(pl){
 function liveFor(p){
   if (p.live === 'tide' && S.tide){ var pm = nextPM(Date.now() - 2*3600e3); if (pm) return {c:'', t:'🌊 ' + T('Pleine mer ', 'High tide ') + fmtT(pm.t) + (pm.coef ? ' · coef ' + pm.coef : '')}; }
   if (p.live === 'sunset'){ var sun = sunFor(todayKey()); if (Date.now() < sun.set) return {c:'', t:'🌅 ' + T('Coucher du soleil ', 'Sunset ') + fmtT(sun.set)}; }
+  if (p.live === 'lowtide' && S.tide){
+    var now = Date.now(), bm = S.tide.ext.filter(function(e){ if (e.type !== 'BM' || e.t < now - 3600e3) return false; var s = sunFor(dayKey(e.t)); return e.t > s.rise + 1800e3 && e.t < s.set - 1800e3; })[0];
+    if (bm){ var cf = coefOfDay(dayKey(bm.t)), kd = dayKey(bm.t) === todayKey() ? '' : dayKey(bm.t) === addDays(todayKey(), 1) ? T('demain ', 'tomorrow ') : cap(fmtD(bm.t, {weekday:'short'})) + ' '; return {c:cf && cf >= 80 ? 'ok' : '', t:'🦀 ' + T('Basse mer ', 'Low tide ') + kd + fmtT(bm.t) + (cf ? ' · coef ' + cf + (cf >= 80 ? T(' — idéal', ' — ideal') : '') : '')}; }
+  }
   if (p.live === 'market'){ var m = marketInfo(); return {c:m.open ? 'ok' : '', t:(m.open ? '🟢 ' : '🕖 ') + m.txt + (m.open ? T(" · jusqu'à 13h", ' · until 1pm') : '')}; }
   return null;
 }
 function placeCard(p){
   var C = XCAT[p.cat], lv = liveFor(p);
-  return '<div class="place' + (MAP && MAP.sel === p.id ? ' sel' : '') + '" data-pid="' + p.id + '" style="--c:' + C[4] + '"><div class="pe">' + p.e + '</div><div><span class="k">' + esc(p.k[LANG]) + '</span><h4>' + esc(p.name[LANG]) + '</h4><p>' + esc(p.tip[LANG]) + '</p>' +
+  return '<div class="place' + (p.no ? ' no' : '') + (MAP && MAP.sel === p.id ? ' sel' : '') + '" data-pid="' + p.id + '" style="--c:' + C[4] + '"><div class="pe">' + p.e + '</div><div><span class="k">' + esc(p.k[LANG]) + '</span><h4>' + esc(p.name[LANG]) + '</h4><p>' + esc(p.tip[LANG]) + '</p>' +
     (p.lat ? '<div class="dist">' + distTxt(p) + '</div>' : '') + (lv ? '<div><span class="live-chip ' + lv.c + '">' + esc(lv.t) + '</span></div>' : '') +
-    '<div class="acts">' + (p.lat ? '<a class="btn gold" href="' + GM + p.dest + '" target="_blank" rel="noopener">📍 ' + T('Itinéraire', 'Directions') + '</a>' : '<a class="btn gold" href="' + p.url + '" target="_blank" rel="noopener">🗺️ ' + T("Voir l'itinéraire", 'See the route') + '</a>') + (p.ig ? '<a class="btn" href="https://www.instagram.com/' + p.ig + '/" target="_blank" rel="noopener">Instagram</a>' : '') + '</div></div></div>';
+    '<div class="acts">' + (p.tel ? '<a class="btn gold" href="tel:' + p.tel + '">📞 ' + p.telTxt + '</a>' : '') + (p.no ? '' : p.lat ? '<a class="btn' + (p.tel ? '' : ' gold') + '" href="' + GM + p.dest + '" target="_blank" rel="noopener">📍 ' + T('Itinéraire', 'Directions') + '</a>' : '<a class="btn gold" href="' + p.url + '" target="_blank" rel="noopener">🗺️ ' + T("Voir l'itinéraire", 'See the route') + '</a>') + (p.ig ? '<a class="btn" href="https://www.instagram.com/' + p.ig + '/" target="_blank" rel="noopener">Instagram</a>' : '') + '</div></div></div>';
 }
 function renderPlaces(){
   var box = $('#xlist'); if (!box) return;
@@ -2411,6 +2478,7 @@ function renderPlaces(){
   XCATS.forEach(function(c){
     var items = list.filter(function(p){ return p.cat === c[0]; }); if (!items.length) return;
     h += '<div class="xgroup">' + c[1] + ' ' + T(c[2], c[3]) + '</div>';
+    if (c[0] === 'peche') h += '<div class="xrules"><b>' + T('Les règles à connaître', 'Rules to know') + '</b><ul>' + T('<li>De jour uniquement, à marée basse : de 2 h avant à 2 h 30 après la basse mer, idéalement par coefficient ≥ 80.</li><li>Tailles minimales : palourde 4 cm (japonaise 3,5), coque 2,7 cm, couteau 10 cm, moule 4 cm, crevette 5 cm. Une réglette est obligatoire.</li><li>3 litres maximum de coques et palourdes (cumulés) par personne. Pas de râteau.</li><li>Interdit partout sur le Bassin : huîtres et « bibis ». Palourdes interdites à l\'Île aux Oiseaux et à la Humeyre. Restez à plus de 15 m des parcs à huîtres.</li><li>Avant de partir, vérifiez les fermetures sanitaires temporaires.</li>', '<li>Daylight only, at low tide: from 2 h before to 2 h 30 after low water, ideally with a coefficient ≥ 80.</li><li>Minimum sizes: clam 4 cm (Japanese 3.5), cockle 2.7 cm, razor clam 10 cm, mussel 4 cm, shrimp 5 cm. A measuring ruler is compulsory.</li><li>3 litres maximum of cockles and clams (combined) per person. No rakes.</li><li>Forbidden everywhere in the Bay: oysters and "bibis". Clams forbidden at Île aux Oiseaux and La Humeyre. Stay more than 15 m from oyster beds.</li><li>Check temporary sanitary closures before you go.</li>') + '</ul><a href="https://www.pecheapied-loisir.fr/reglementation/gironde/" target="_blank" rel="noopener">' + T('Réglementation complète ↗', 'Full regulations ↗') + '</a></div>';
     if (c[0] === 'food') h += '<p class="xnote">' + T('Toutes les cabanes ostréicoles se valent : vous pouvez y aller <b>les yeux fermés</b>. Deux de nos préférées sont ci-dessous.', 'Every oyster shack is trustworthy — <b>pick any one with confidence</b>. Two of our favourites are below.') + '</p>';
     h += '<div class="places">' + items.map(placeCard).join('') + '</div>';
   });
@@ -2434,7 +2502,7 @@ function mapPad(){
   var st = $('#xpanel').getAttribute('data-state'), ph = $('#xpanel').offsetHeight || 500, cover = st === 'half' ? ph*.58 : st === 'full' ? ph : 220;
   return {tl:[30, 90], br:[30, Math.round(cover) + 20]};
 }
-function boundsPts(){ return PLACES.filter(function(p){ return p.lat && (S.mapCat === 'all' ? p.id !== 'hortense' : p.cat === S.mapCat); }).map(function(p){ return [p.lat, p.lon]; }).concat([[CFG.home.lat, CFG.home.lon]]); }
+function boundsPts(){ return PLACES.filter(function(p){ return p.lat && (S.mapCat === 'all' ? ['hortense', 'pap-mimbeau'].indexOf(p.id) < 0 : p.cat === S.mapCat); }).map(function(p){ return [p.lat, p.lon]; }).concat([[CFG.home.lat, CFG.home.lon]]); }
 function initMap(){
   if (MAP) return Promise.resolve();
   return loadLeaflet().then(function(){
@@ -2460,7 +2528,7 @@ function addMarkers(anim){
   if (!MAP) return; var Lf = window.L, i = 0;
   PLACES.forEach(function(p){
     if (!p.lat || MAP.markers[p.id]) return;
-    var m = Lf.marker([p.lat, p.lon], {icon:Lf.divIcon({className:'', html:'<div class="pin' + (anim ? ' drop' : '') + '" style="animation-delay:' + (anim ? i*110 : 0) + 'ms"><span>' + p.e + '</span></div>', iconSize:[40, 40], iconAnchor:[20, 40], popupAnchor:[0, -38]})});
+    var m = Lf.marker([p.lat, p.lon], {icon:Lf.divIcon({className:'', html:'<div class="pin' + (p.no ? ' no' : '') + (anim ? ' drop' : '') + '" style="animation-delay:' + (anim ? i*110 : 0) + 'ms"><span>' + p.e + '</span></div>', iconSize:[40, 40], iconAnchor:[20, 40], popupAnchor:[0, -38]})});
     i++;
     m.bindPopup(function(){ return popupHTML(p); });
     m.on('click', function(){ selectPlace(p.id, false); });
@@ -2950,7 +3018,7 @@ function copyWifi(btn){
   var fallback = function(){ var ta = document.createElement('textarea'); ta.value = CFG.wifiPass; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch(e){ toast(CFG.wifiPass); } document.body.removeChild(ta); };
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(CFG.wifiPass).then(done, fallback); else fallback();
 }
-function sheet(open){ $('#sos').classList.toggle('on', open); $('#sheetBg').classList.toggle('on', open); }
+function sheet(open){ var s = $('#sos'), b = $('#sheetBg'); if (s) s.classList.toggle('on', open); if (b) b.classList.toggle('on', open); }
 function countUp(el, to){ if (!el) return; if (RM){ el.textContent = to; return; } var t0 = performance.now(); (function f(n){ var k = Math.min(1, (n - t0)/900), e = 1 - Math.pow(1 - k, 3); el.textContent = Math.round(to*e); if (k < 1) requestAnimationFrame(f); })(t0); }
 var IO = null;
 function observeReveal(){
@@ -3021,7 +3089,7 @@ document.addEventListener('click', function(e){
   if (d.gpprev != null){ if (GP.i > 0){ GP.i--; gpShow(); } return; }
   if (d.gpnext != null){ if (GP.i < GUIDES[GP.id].steps.length - 1){ GP.i++; gpShow(); } else closeGuide(); return; }
   if (d.lb){ $('#lbImg').src = d.lb; $('#lb').classList.add('on'); document.body.classList.add('lock'); return; }
-  if (d.sos != null){ sheet(!$('#sos').classList.contains('on')); return; }
+  if (d.sos != null){ location.hash = 'stay/help'; return; }
   if (d.svclose != null){ closeStories(); return; }
   if (d.svprev != null){ svShow(SV.i - 1); return; }
   if (d.svnext != null){ svShow(SV.i + 1); return; }
