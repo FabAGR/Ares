@@ -915,6 +915,88 @@ body.mapmode footer{display:none}
 @keyframes flowA{to{stroke-dashoffset:-28}}
 .gp-dev .blink{animation:blinkA 1.2s steps(2) infinite}
 @keyframes blinkA{50%{opacity:.25}}
+
+/* =========================================================
+   CONCIERGE « Demandez au Cocon » (aperçu)
+   ========================================================= */
+.czc{margin-top:14px;padding:16px;border-radius:var(--r-lg);background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow-s);display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.czc::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 170px at 100% 0%,var(--glow1),transparent 70%);pointer-events:none}
+.czc-top{display:flex;align-items:center;gap:12px;position:relative}
+.cz-logo{width:42px;height:42px;border-radius:13px;flex:none}
+.czc-tx{flex:1;min-width:0}
+.czc-tx b{display:block;font:500 17px/1.2 var(--serif);color:var(--text)}
+.czc-tx small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.cz-tag{font:600 9.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line2);border-radius:999px;padding:4px 7px;flex:none}
+.czc-in{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:1px solid var(--line2);background:var(--card-alt);border-radius:999px;padding:6px 6px 6px 16px;color:var(--muted);font-size:15px;text-align:left}
+.cz-go{width:36px;height:36px;border-radius:50%;background:var(--gold);color:#14100A;display:grid;place-items:center;flex:none}
+.cz-go svg{width:17px;height:17px}
+.czc-chips,.czp-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;position:relative}
+.czc-chips::-webkit-scrollbar,.czp-chips::-webkit-scrollbar{display:none}
+.czc-chips button,.czp-chips button{flex:none;white-space:nowrap;border:1px solid var(--line2);background:var(--chip);border-radius:999px;padding:7px 12px;font-size:13px;color:var(--text)}
+.czc-chips button:hover,.czp-chips button:hover{border-color:var(--gold)}
+.czfab{position:fixed;right:16px;bottom:calc(98px + env(safe-area-inset-bottom));z-index:66;display:flex;align-items:center;justify-content:center;gap:8px;height:56px;min-width:56px;padding:0 16px;border-radius:28px;border:0;background:linear-gradient(135deg,#E8CF9C,#C9A96E);color:#14100A;box-shadow:0 16px 34px -12px rgba(0,0,0,.6);font:600 14px/1 var(--sans);transition:transform .3s var(--ease),opacity .3s}
+.czfab svg{width:24px;height:24px;flex:none}
+.czfab span{display:none}
+body.mapmode .czfab,body.czon .czfab{opacity:0;pointer-events:none;transform:scale(.8)}
+.czbg{position:fixed;inset:0;z-index:139;background:rgba(5,8,12,.5);opacity:0;pointer-events:none;transition:opacity .3s}
+.czbg.on{opacity:1;pointer-events:auto}
+.czp{position:fixed;left:0;right:0;bottom:0;z-index:140;height:88vh;height:min(88dvh,760px);display:flex;flex-direction:column;background:var(--card-solid);color:var(--text);border-radius:26px 26px 0 0;border:1px solid var(--line);box-shadow:var(--shadow);padding-bottom:env(safe-area-inset-bottom);transform:translateY(105%);visibility:hidden;transition:transform .38s var(--ease),visibility 0s .38s}
+.czp.on{transform:none;visibility:visible;transition:transform .38s var(--ease)}
+.czp-h{display:flex;align-items:center;gap:11px;padding:16px 14px 12px 16px;border-bottom:1px solid var(--line)}
+.czp-id{flex:1;min-width:0}
+.czp-id b{display:block;font:500 19px/1.15 var(--serif)}
+.czp-id small{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12.5px;margin-top:3px}
+.czp-x{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--chip);display:grid;place-items:center;color:var(--text);flex:none}
+.czp-x svg{width:16px;height:16px}
+.czp-ctx{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line);background:var(--card-alt)}
+.czp-ctx::-webkit-scrollbar{display:none}
+.czp-ctx span{flex:none;font-size:11.5px;color:var(--soft);white-space:nowrap}
+.czp-ctx span+span::before{content:"·";margin-right:6px;color:var(--muted)}
+.czp-msgs{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:14px;display:flex;flex-direction:column;gap:10px}
+.czb{max-width:88%;padding:10px 13px;border-radius:18px;font-size:14.5px;line-height:1.5;overflow-wrap:anywhere}
+.czb p{margin:0}
+.czb p+p{margin-top:8px}
+.czb.me{align-self:flex-end;background:var(--gold);color:#14100A;border-bottom-right-radius:6px}
+.czb.bot{align-self:flex-start;background:var(--card-alt);border:1px solid var(--line);border-bottom-left-radius:6px}
+.czb.bot strong{font-weight:600}
+.czb.note{font:400 12.5px/1.5 var(--sans);color:var(--muted);background:none;border-style:dashed}
+.czb.note p{font:inherit}
+.czb.note b{color:var(--accent)}
+.czb p.cz-note{font-size:12.5px;color:var(--muted);font-style:italic}
+.cz-typing{display:inline-flex;gap:4px;padding:4px 2px}
+.cz-typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:czBlink 1.2s infinite}
+.cz-typing i:nth-child(2){animation-delay:.2s}
+.cz-typing i:nth-child(3){animation-delay:.4s}
+@keyframes czBlink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.cz-acts{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.cz-act{display:grid;grid-template-columns:32px minmax(0,1fr) 14px;gap:10px;align-items:center;width:100%;padding:8px 10px;border-radius:13px;background:var(--card-solid);border:1px solid var(--line);text-align:left;color:var(--text);transition:border-color .2s}
+.cz-act:hover{border-color:var(--gold)}
+.cz-act .ic{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:rgba(201,169,110,.16);font-size:16px}
+.cz-act b{display:block;font-size:13px;font-weight:600;line-height:1.3}
+.cz-act small{display:block;color:var(--muted);font-size:11.5px;line-height:1.35}
+.cz-act .chev{color:var(--muted)}
+.czp-chips{padding:9px 12px 5px;border-top:1px solid var(--line)}
+.czp-ask{display:flex;gap:8px;padding:6px 12px 14px}
+.czp-ask input{flex:1;min-width:0;border-radius:999px;border:1px solid var(--line2);background:var(--card-alt);color:var(--text);padding:10px 15px;font:400 16px/1.2 var(--sans);outline:none}
+.czp-ask input:focus{border-color:var(--gold)}
+.czp-ask input::placeholder{color:var(--muted)}
+.czp-send{width:42px;height:42px;border-radius:50%;border:0;background:var(--gold);color:#14100A;display:grid;place-items:center;flex:none}
+.czp-send svg{width:18px;height:18px}
+@media (min-width:700px){
+  .czp{left:auto;right:24px;bottom:24px;width:410px;height:min(700px,calc(100vh - 48px));border-radius:26px;transform:translateY(24px) scale(.97);opacity:0;transition:transform .3s var(--ease),opacity .3s,visibility 0s .3s}
+  .czp.on{transform:none;opacity:1;transition:transform .3s var(--ease),opacity .3s}
+  .czbg{background:transparent}
+  .czc{max-width:880px;margin:18px auto 0;flex-direction:row;flex-wrap:wrap;align-items:center;padding:18px 20px}
+  .czc-top{flex:1 1 300px}
+  .czc-tx b{font-size:19px}
+  .czc-in{flex:1 1 320px}
+  .czc-chips{flex:1 1 100%}
+}
+@media (min-width:1024px){
+  .czfab{right:28px;bottom:28px;padding:0 20px 0 16px}
+  .czfab span{display:inline}
+}
+@media (prefers-reduced-motion: reduce){.czp,.czbg,.czfab{transition:none!important}.cz-typing i{animation:none}}
 </style>
 </head>
 
@@ -1025,6 +1107,12 @@ body.mapmode footer{display:none}
         <div class="now-sub" id="nowTideL">…</div>
       </div>
     </a>
+
+    <div class="czc rv">
+      <div class="czc-top"><svg class="cz-logo" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#0A0F15"/><circle cx="40" cy="22" r="8" fill="#E8CF9C"/><path d="M8 40c6-6 12-6 18 0s12 6 18 0 9-5 12-3" stroke="#C9A96E" stroke-width="5" fill="none" stroke-linecap="round"/></svg><div class="czc-tx"><b><span class="fr">Une question ? Demandez au Cocon</span><span class="en">A question? Ask the Cocon</span></b><small><span class="fr">Marées, restos, pêche à pied, la clim… réponse immédiate</span><span class="en">Tides, restaurants, foraging, the AC… instant answers</span></small></div><span class="cz-tag">IA</span></div>
+      <button class="czc-in" type="button" data-cz data-cz-focus><span><span class="fr">Posez votre question…</span><span class="en">Ask your question…</span></span><span class="cz-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span></button>
+      <div class="czc-chips" id="czcChips"></div>
+    </div>
 
     <nav class="quick rv" aria-label="Raccourcis">
       <button class="q" data-copy="wifi"><span class="qi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10.5 10.5 0 0 1 14 0M8.5 15.5a5.5 5.5 0 0 1 7 0"/><circle cx="12" cy="19" r="1.2" fill="currentColor"/></svg></span><span class="ql">Wi-Fi<small><span class="fr">Copier le code</span><span class="en">Copy password</span></small></span></button>
@@ -1434,7 +1522,7 @@ body.mapmode footer{display:none}
         <header class="ssec-h"><span class="num">05</span><div><span class="kicker"><span class="fr">On est là</span><span class="en">We're here</span></span><h2><span class="fr">Besoin <em>d'aide ?</em></span><span class="en">Need <em>help?</em></span></h2></div></header>
         <div class="card">
           <p style="margin:0;font-size:14.5px;color:var(--soft)"><span class="fr">Un souci, une question ? Écrivez-nous via la messagerie Airbnb pendant votre séjour, tout se règle vite.</span><span class="en">A problem, a question? Message us through Airbnb during your stay — we'll sort it out quickly.</span></p>
-          <div class="acts" style="margin-top:14px"><a class="btn gold" data-msg href="https://www.airbnb.fr/guest/messages" target="_blank" rel="noopener">💬 <span class="fr">Nous écrire</span><span class="en">Message us</span></a></div>
+          <div class="acts" style="margin-top:14px"><a class="btn gold" data-msg href="https://www.airbnb.fr/guest/messages" target="_blank" rel="noopener">💬 <span class="fr">Nous écrire</span><span class="en">Message us</span></a><button class="btn" type="button" data-cz>✨ <span class="fr">Demandez au Cocon</span><span class="en">Ask the Cocon</span></button></div>
           <div class="sos-grid">
             <a href="tel:112"><b>112</b><span class="fr">Urgences</span><span class="en">Emergency</span></a>
             <a href="tel:15"><b>15</b>SAMU</a>
@@ -1499,6 +1587,16 @@ body.mapmode footer{display:none}
 </div>
 
 <div class="lb" id="lb" data-close><button class="sv-x" data-close aria-label="Fermer">✕</button><div><img id="lbImg" alt=""><p><span class="fr">Garez-vous dans la zone entourée en rouge.</span><span class="en">Park in the area outlined in red.</span></p></div></div>
+<button class="czfab" id="czFab" type="button" data-cz aria-label="Demandez au Cocon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 20.5l1.6-5A8.4 8.4 0 1 1 21 11.5z"/><path d="M12 7.6l1 2.4 2.4 1-2.4 1-1 2.4-1-2.4-2.4-1 2.4-1z" fill="currentColor" stroke="none"/></svg><span><span class="fr">Demandez au Cocon</span><span class="en">Ask the Cocon</span></span></button>
+<div class="czbg" id="czBg"></div>
+<section class="czp" id="czP" role="dialog" aria-modal="true" aria-labelledby="czTitle">
+  <header class="czp-h"><svg class="cz-logo" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#0A0F15"/><circle cx="40" cy="22" r="8" fill="#E8CF9C"/><path d="M8 40c6-6 12-6 18 0s12 6 18 0 9-5 12-3" stroke="#C9A96E" stroke-width="5" fill="none" stroke-linecap="round"/></svg><div class="czp-id"><b id="czTitle">Le Cocon</b><small><span class="fr">Votre concierge à Arès</span><span class="en">Your concierge in Arès</span> <span class="cz-tag">IA</span></small></div>
+    <button class="czp-x" id="czX" type="button" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
+  <div class="czp-ctx" id="czCtx" aria-label="Ce que le concierge sait en ce moment"></div>
+  <div class="czp-msgs" id="czMsgs" aria-live="polite"></div>
+  <div class="czp-chips" id="czChips"></div>
+  <form class="czp-ask" id="czForm" autocomplete="off"><input id="czIn" type="text" maxlength="300" placeholder="Posez votre question…" aria-label="Votre question"><button class="czp-send" type="submit" aria-label="Envoyer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></form>
+</section>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -3287,6 +3385,349 @@ function boot(){
   sp.addEventListener('click', function(){ sp.classList.add('out'); });
 }
 boot();
+/* ================= CONCIERGE (APERÇU) =================
+   Version de démonstration : les questions courantes sont reconnues par mots-clés
+   et les réponses sont calculées avec les données en direct du livret.
+   La version finale remplacera czAnswer() par un appel à l'IA via un relais. */
+var CZ = {busy:false, greeted:false, turns:[], off:false};
+var CZ_URL = 'https://cocon-concierge.cocon-du-bassin.workers.dev';   /* adresse du serveur du concierge ; vide = réponses préparées uniquement */
+var CZ_LIVE = /^https:/.test(CZ_URL);
+var CZ_MSG = 'https://www.airbnb.fr/guest/messages', CZ_IG = 'https://www.instagram.com/tinyhouse.33740/';
+var CZ_TIDE = {k:'go', h:'#live/tide', ic:'🌊', t:'Les marées', s:'Courbe et horaires du SHOM'};
+var CZ_CHIPS = [
+  ['🦀 Pêche à pied', 'On aimerait pêcher à pied demain avec les enfants', '🦀 Foraging', 'Can we go shore foraging tomorrow with the kids?'],
+  ['🌅 Coucher de soleil', 'Où voir le coucher de soleil ce soir ?', '🌅 Sunset', 'Where can we watch the sunset tonight?'],
+  ['🏊 Se baigner', 'Quand peut-on se baigner ?', '🏊 Swimming', 'When is the best time to swim?'],
+  ['🦪 Huîtres', 'Où manger des huîtres ?', '🦪 Oysters', 'Where can we eat oysters?'],
+  ['📅 Que faire ?', 'Une idée de sortie ces prochains jours ?', '📅 What to do?', 'Any ideas for the next few days?'],
+  ['🥾 Randonnée', 'Une belle randonnée dans le coin ?', '🥾 Hiking', 'A nice walk nearby?'],
+  ['🏄 Surf', 'Où surfer quand on débute ?', '🏄 Surf', 'Where can beginners surf?'],
+  ['🗑️ Poubelles', 'Où jeter le verre et les poubelles ?', '🗑️ Bins', 'What do we do with the rubbish and glass?'],
+  ['❄️ La clim', 'La clim ne démarre pas', '❄️ The AC', "The air conditioning won't start"],
+  ['📶 Wi-Fi', 'Quel est le code Wi-Fi ?', '📶 Wi-Fi', 'What is the Wi-Fi password?'],
+  ['🧳 Départ', 'On part à quelle heure ?', '🧳 Check-out', 'What time is check-out?']
+];
+var CZ_HOME = [1, 0, 3, 2, 8];
+function czPlace(id){ return PLACES.filter(function(p){ return p.id === id; })[0]; }
+function czAcc(id){ var p = czPlace(id); return p ? distTxt(p) : ''; }
+function czWxAt(t){ var b = null; hoursFrom(t - 3600e3, t + 3600e3).forEach(function(h){ if (!b || Math.abs(h.t - t) < Math.abs(b.t - t)) b = h; }); return b; }
+function czDay(t){ var k = dayKey(t), k0 = todayKey(); return k === k0 ? "aujourd'hui" : k === addDays(k0, 1) ? 'demain' : fmtD(t, {weekday:'long', day:'numeric', month:'long'}); }
+function czMarket(){ var mi = marketInfo(); return mi.open ? "**ouvert en ce moment**, jusqu'à 13h" : 'prochain marché **' + (mi.days > 1 ? mi.txt.replace(/^[^:]*:\s*/, '') + ' matin' : mi.txt.charAt(0).toLowerCase() + mi.txt.slice(1)) + '**'; }
+function czSky(w){ return wxInfo(w.code, w.day).label.toLowerCase() + ', ' + Math.round(w.temp) + ' °C' + (w.pp >= 30 ? ', risque de pluie ' + w.pp + ' %' : ''); }
+
+/* ---------- Réponses ---------- */
+function czPeche(n){
+  var now = Date.now(), want = /demain/.test(n) ? addDays(todayKey(), 1) : null, E = extIn(now + 30*60000, now + 4*864e5, 'BM');
+  if (!E.length) return {t:"Je n'ai pas encore reçu les horaires de marée. La courbe des marées indique la prochaine basse mer.", a:[CZ_TIDE]};
+  var day = function(e){ var h = pp(new Date(e.t)).h; return h >= 8 && h <= 20; };
+  var pick = E.filter(function(e){ return day(e) && (!want || dayKey(e.t) === want); })[0] || E.filter(day)[0] || E[0];
+  var k = dayKey(pick.t), c = coefOfDay(k), out = [];
+  if (/matin/.test(n) && pp(new Date(pick.t)).h >= 12){ var pm = extIn(dayStart(k) + 7*3600e3, dayStart(k) + 12*3600e3, 'PM')[0]; if (pm) out.push('Le matin, la mer sera haute (pleine mer à **' + fmtT(pm.t) + "**) : ce n'est pas le bon moment."); }
+  var l = (out.length ? 'Le bon créneau' : 'Le prochain bon créneau') + ' : basse mer **' + czDay(pick.t) + ' à ' + fmtT(pick.t) + '**' + (c ? ' (coefficient ' + c + ')' : '') + '. ';
+  if (c) l += c < 45 ? "Petite marée : l'eau ne se retire pas très loin" + (/enfant/.test(n) ? ', plutôt rassurant avec des enfants.' : '.') : c < 70 ? "Marée moyenne : de quoi bien explorer l'estran." : "Gros coefficient : l'estran se découvre sur des centaines de mètres.";
+  out.push(l);
+  var go = fmtT(pick.t - 3600e3), spot = c && c >= 70 ? 'pap-betey' : 'pap-ares';
+  out.push(spot === 'pap-ares'
+    ? 'Partez vers **' + go + "** pour **l'estran d'Arès**, devant la jetée (" + czAcc('pap-ares') + ') : crabes verts et donaces, 25 mm minimum.'
+    : 'Partez vers **' + go + '** pour **la plage du Bétey** à Andernos (' + czAcc('pap-betey') + ') : crabes, crevettes grises (5 cm minimum) et palourdes (3,5 à 4 cm).');
+  var w = czWxAt(pick.t);
+  out.push((w ? 'Météo prévue : ' + czSky(w) + '. ' : '') + 'Jamais dans la réserve des prés salés : la pêche y est interdite.');
+  return {t:out.join('\n'), a:[{k:'place', id:spot}, CZ_TIDE]};
+}
+function czSunset(){
+  var now = Date.now(), k = todayKey(), sn = sunFor(k), tm = false;
+  if (now > sn.set){ k = addDays(k, 1); sn = sunFor(k); tm = true; }
+  var w = czWxAt(sn.set), cc = w ? w.cc : null, s = (tm ? 'Demain' : 'Ce soir') + ', le soleil se couche à **' + fmtT(sn.set) + '**';
+  if (cc == null) s += '.';
+  else if (cc < 30) s += " et le ciel s'annonce dégagé : c'est la soirée à ne pas manquer.";
+  else if (cc < 70) s += ', avec quelques nuages : ce sont souvent les plus belles couleurs.';
+  else {
+    s += ", mais le ciel sera chargé : le spectacle risque d'être discret.";
+    for (var i = 1; i <= 5; i++){ var s2 = sunFor(addDays(k, i)), w2 = czWxAt(s2.set); if (!w2) break; if (w2.cc < 30){ s += '\nPour un vrai beau coucher de soleil, gardez **' + fmtD(s2.set, {weekday:'long', day:'numeric', month:'long'}) + '** : ciel dégagé annoncé, coucher à ' + fmtT(s2.set) + '.'; break; } }
+  }
+  return {t:s + "\nAu plus près : **la jetée d'Arès** (" + czAcc('ss-jetee') + ") : marchez jusqu'au bout, le soleil descend derrière la presqu'île. Pour l'apéro : **le bout du port**, face aux prés salés, avec la Cabane du Bout (réservation conseillée).",
+    a:[{k:'place', id:'ss-jetee'}, {k:'place', id:'ss-port'}, {k:'go', h:'#explore/sunset', ic:'🌅', t:'Tous nos spots', s:'7 spots autour du Bassin'}]};
+}
+function czSwim(){
+  var w = nextSwim(Date.now());
+  if (!w) return {t:"Devant Arès, on se baigne autour de la pleine mer : à marée basse, l'eau se retire très loin. Pas de créneau en journée dans les prochaines heures : la courbe des marées vous montre le suivant.", a:[CZ_TIDE]};
+  var t = 'Le meilleur moment pour se baigner devant Arès : **' + czDay(w.a) + ' de ' + fmtT(w.a) + ' à ' + fmtT(w.b) + "**, autour de la pleine mer (" + fmtT(w.pm.t) + "). À marée basse, l'eau se retire très loin.";
+  if (S.sea && S.sea.sst) t += " L'eau est à " + Math.round(S.sea.sst) + ' °C.';
+  t += "\nLa plage de la jetée est à " + czAcc('jetee') + ". Pour l'apéro, notre suggestion simple : quelques bières et une pizza à emporter, sur le sable.";
+  return {t:t, a:[{k:'place', id:'jetee'}, CZ_TIDE]};
+}
+function czMaree(){
+  var now = Date.now(), nw = tideNow(now);
+  if (!nw) return {t:'Les horaires de marée arrivent : la courbe des marées les affiche.', a:[CZ_TIDE]};
+  var nx = extIn(now, now + 30*3600e3).slice(0, 3).map(function(e){ return (e.type === 'PM' ? 'pleine mer' : 'basse mer') + ' **' + czDay(e.t) + ' à ' + fmtT(e.t) + '**' + (e.coef ? ' (coef ' + e.coef + ')' : ''); });
+  return {t:'La mer ' + (nw.rising ? 'monte' : 'descend') + ' en ce moment. À venir : ' + nx.join(', ') + ".\nOn se baigne autour de la pleine mer, on pêche à pied autour de la basse mer.", a:[CZ_TIDE]};
+}
+function czFood(){
+  var k = todayKey(), sn = sunFor(k);
+  return {t:"Pour des huîtres les pieds dans l'eau : **La Cabane du Bout**, au bout du port ostréicole d'Arès (" + czAcc('cabane') + ')' + (Date.now() < sn.set ? ', avec le coucher de soleil à ' + fmtT(sn.set) + ' en prime' : '') + ". Réservation conseillée.\nPour déjeuner : **Le Chat Tard**, à 5 min à pied : demandez à manger les pieds dans l'eau, sur une balançoire. Au Cap Ferret, notre autre adresse préférée : **la Cabane d'Hortense**.",
+    a:[{k:'place', id:'cabane'}, {k:'place', id:'chattard'}, {k:'go', h:'#explore/food', ic:'🦪', t:'Toutes nos adresses', s:'Sur la carte Explorer'}]};
+}
+function czShop(){
+  return {t:"Le **marché d'Arès**, place Weiss (mardi et dimanche, 7h30-13h) : " + czMarket() + ".\nBoulangerie : **Les Délices d'Arès**, place de l'Église (" + czAcc('delices') + '). Supermarchés : **Lidl** pour le quotidien, **E.Leclerc** pour tout le reste, avenue de Bordeaux.',
+    a:[{k:'place', id:'marche'}, {k:'place', id:'delices'}, {k:'go', h:'#explore/shop', ic:'🛒', t:'Toutes les courses', s:'Sur la carte Explorer'}]};
+}
+function czMeteo(){
+  var d = S.wx && S.wx.daily; if (!d) return {t:'La météo arrive : la page Live affiche les prévisions heure par heure.', a:[{k:'go', h:'#live/weather', ic:'⛅', t:'La météo', s:'Heure par heure, vent, UV'}]};
+  var k0 = todayKey(), L = [];
+  [0, 1, 2].forEach(function(i){ var k = addDays(k0, i), j = d.time.indexOf(k); if (j < 0) return;
+    L.push('**' + (i === 0 ? "Aujourd'hui" : i === 1 ? 'Demain' : cap(fmtD(dayStart(k) + 12*3600e3, {weekday:'long'}))) + '** : ' + wxInfo(d.weather_code[j], 1).label.toLowerCase() + ', ' + Math.round(d.temperature_2m_min[j]) + ' → ' + Math.round(d.temperature_2m_max[j]) + ' °C' + (d.precipitation_probability_max[j] >= 30 ? ', pluie ' + d.precipitation_probability_max[j] + ' %' : '') + '.'); });
+  return {t:L.join('\n'), a:[{k:'go', h:'#live/weather', ic:'⛅', t:'La météo', s:'Heure par heure, vent, UV'}]};
+}
+function czSortir(){
+  var lim = Date.now() + 4*864e5, ev = agendaItems().filter(function(it){ return it.ev.start < lim && !/que faire|\?\s*$/i.test(it.title); }), out = [];
+  ev = ev.filter(function(it){ return !it.ev.range; }).concat(ev.filter(function(it){ return it.ev.range; })).slice(0, 3);
+  if (ev.length) out.push('Au programme ces prochains jours : ' + ev.map(function(it){ return '**' + it.title + '** (' + whenTxt(it.ev) + (it.town && it.town.n ? ', ' + it.town.n : '') + ')'; }).join(' ; ') + '.');
+  else out.push("Je ne vois pas d'événement annoncé dans les prochains jours.");
+  out.push("Le marché d'Arès, place Weiss : " + czMarket() + ". Et une valeur sûre : le sentier des prés salés en fin de journée, dans la lumière dorée.");
+  return {t:out.join('\n'), a:[{k:'go', h:'#news/agenda', ic:'📅', t:"L'agenda", s:'Tous les événements à venir'}, {k:'place', id:'ss-pres'}]};
+}
+function czBoat(){
+  return {t:"Pour rejoindre Arcachon ou le Cap Ferret par l'eau, des navettes partent (en saison) de la **jetée d'Andernos**, à 12 min en voiture.\nPar la route, comptez **58 min** pour la Dune du Pilat et **28 min** pour le Cap Ferret. Arès est aussi sur la piste cyclable du tour du Bassin.",
+    a:[{k:'place', id:'andernos'}, {k:'place', id:'ss-dune'}]};
+}
+function czGuide(id){ return function(){
+  var M = {
+    clim:"Ouvrez le guide animé de la clim : il montre, sur la télécommande accrochée au mur de la cuisine, les gestes exacts pour l'allumer et choisir le mode.\nSi elle ne démarre toujours pas après ces étapes, écrivez-nous sur la messagerie Airbnb : on vous répond vite.",
+    tv:"Le guide animé de la télé montre comment l'allumer, passer sur b.tv, l'éteindre et caster depuis votre téléphone.",
+    plaque:"« Lo » s'affiche sur la plaque ? Elle est simplement verrouillée. Le guide animé montre comment la déverrouiller puis l'allumer.",
+    canape:"Le canapé se déplie en lit : il suffit de tirer l'anse vers soi. Le guide animé montre le geste."
+  };
+  return {t:M[id], a:[{k:'guide', id:id}].concat(id === 'clim' ? [{k:'msg'}] : [])};
+}; }
+function czWifi(){ return {t:"Le réseau s'appelle **Bbox-74F8BEB4-Plus**. Touchez le bouton ci-dessous pour copier le mot de passe, puis collez-le dans les réglages Wi-Fi de votre téléphone.", a:[{k:'wifi'}]}; }
+function czCode(){ return {t:"Pour votre sécurité, je ne donne jamais les codes ici. Votre code personnel vous a été envoyé par la messagerie Airbnb avant votre arrivée : le même code ouvre le cadenas du portail et la porte.\nVous ne le retrouvez pas ? Écrivez-nous sur Airbnb, on vous le renvoie tout de suite.", a:[{k:'guide', id:'portail'}, {k:'guide', id:'porte'}, {k:'msg'}]}; }
+function czUrgence(){ return {t:"En cas d'urgence, appelez le **15** (SAMU) ou le **112**. Pour un secours en mer, le **196**.\nLes urgences les plus proches : **l'Hôpital Privé Wallerstein**, 14 bis boulevard Javal à Arès (" + czAcc('hopital') + '). Pharmacie de garde : **3237**.',
+  a:[{k:'tel', n:'15', t:'Appeler le 15', s:'SAMU'}, {k:'tel', n:'0556038700', t:"Appeler l'hôpital", s:'Hôpital Privé Wallerstein · urgences'}, {k:'place', id:'hopital'}]}; }
+function czBook(){ return {t:"Ça nous ferait très plaisir de vous revoir ! Les réservations du Cocon passent par Airbnb : c'est là que vous retrouverez nos disponibilités.\nPour ne pas nous perdre de vue d'ici là, suivez **@tinyhouse.33740** sur Instagram : on y partage nos nouveautés et nos coins préférés du Bassin.", a:[{k:'ig'}]}; }
+function czDepart(){
+  var g = S.guest || {}, pre = g.dep ? 'Votre départ est prévu **' + fmtD(dayStart(g.dep) + 12*3600e3, {weekday:'long', day:'numeric', month:'long'}) + '**, ' : 'Le départ se fait ';
+  return {t:pre + "**avant 11h**. Deux gestes avant de partir : fermer le Velux et éteindre la climatisation. Rien d'autre à faire : laissez les poubelles sur place, et si vous pouvez déposer le verre à la borne Brémontier, merci !\nMerci pour votre séjour, et à bientôt sur le Bassin !", a:[{k:'go', h:'#stay/depart', ic:'🧳', t:'Avant de partir', s:'La check-list du départ'}, {k:'guide', id:'clim'}]};
+}
+function czArrivee(){ return {t:"L'arrivée se fait **à partir de 15h**. Garez-vous sur l'herbe devant la maison, dans la zone entourée en rouge sur la photo. Votre code personnel (envoyé par la messagerie Airbnb) ouvre le cadenas du portail, puis la porte.", a:[{k:'go', h:'#stay/arrive', ic:'🔑', t:'Arriver au Cocon', s:'Parking, portail, porte'}, {k:'guide', id:'portail'}]}; }
+function czWaste(){ return {t:"Laissez vos poubelles sur place : on s'en occupe.\nSeul le verre est à déposer, si vous le pouvez : la **borne Brémontier** est à 2 min à pied, devant l'Espace Brémontier (en vrac, sans sac). Merci !", a:[{k:'place', id:'dc-bremontier'}, {k:'go', h:'#explore/waste', ic:'🗑️', t:'Les points de collecte', s:'Sur la carte Explorer'}]}; }
+function czHike(){
+  var now = Date.now(), bm = extIn(now, now + 2*864e5, 'BM').filter(function(e){ var h = pp(new Date(e.t)).h; return h >= 8 && h <= 19; })[0];
+  return {t:"Notre préférée part d'Arès : **les prés salés**, une boucle de 7,2 km (2 h) depuis le port ostréicole, plutôt à marée basse" + (bm ? ' (prochaine basse mer ' + czDay(bm.t) + ' à ' + fmtT(bm.t) + ')' : '') + ".\nPlus loin : **le sentier du littoral jusqu'à Andernos** (9 km), **les réservoirs de Piraillan** au Cap Ferret (2,1 km, 18 min en voiture) ou **le domaine de Graveyron** à Audenge (5 km, idéal pour les oiseaux).",
+    a:[{k:'place', id:'rd-pres'}, {k:'place', id:'rd-piraillan'}, {k:'go', h:'#explore/hike', ic:'🥾', t:'Toutes les randonnées', s:'5 balades autour du Bassin'}]};
+}
+function czSurf(){
+  var sw = S.surf, wc = S.wx && S.wx.current, offs = wc && wc.wind_direction_10m >= 40 && wc.wind_direction_10m <= 140;
+  var now = sw && sw.wave != null ? 'En ce moment, la houle fait **' + num(sw.wave, 1) + ' m**' + (sw.period ? ' (' + Math.round(sw.period) + ' s)' : '') + (offs ? ', avec un vent de terre qui lisse les vagues.' : '.') + (sw.wave > 1.6 ? ' C\'est gros pour débuter : passez par une école.' : '') + '\n' : '';
+  return {t:now + "Pour débuter : **le Grand Crohot**, à 15 min en voiture, surveillé en saison avec plusieurs écoles de surf. Pour progresser : **la plage de la Garonne**, moins fréquentée. Pour les confirmés : **le Truc Vert**, le spot de référence du Bassin. Envie de calme ? Nos spots plus secrets sont aussi sur la carte : le Petit Crohot, La Torchère et Les Dunes.\nAttention aux baïnes : on surfe toujours sur une plage surveillée.",
+    a:[{k:'place', id:'sf-crohot'}, {k:'place', id:'sf-trucvert'}, {k:'go', h:'#explore/surf', ic:'🏄', t:'Tous les spots de surf', s:'Classés par niveau, houle en direct'}]};
+}
+function czMerci(){ return {t:'Avec plaisir ! Très bon séjour au Cocon.'}; }
+function czHello(){ return {t:'Bonjour ! Posez-moi vos questions : marées, pêche à pied, couchers de soleil, restos, équipements du Cocon…'}; }
+function czFallback(){ return {t:"Je n'ai pas encore la réponse à cette question dans cet aperçu. La version finale, avec l'IA, comprendra toutes vos questions.\nEn attendant, écrivez-nous sur Airbnb : on vous répond vite.", a:[{k:'msg'}]}; }
+
+/* Ordre = priorité en cas d'égalité */
+var CZ_INTENTS = [
+  [czUrgence, ['urgence', 'urgent', 'bless', 'coupe', 'coupure', 'saigne', 'hopital', 'medecin', 'docteur', 'pharmacie', 'malade', ' mal ', 'douleur', 'accident', 'secours', 'noy', 'piqu']],
+  [czWifi, ['wifi', 'wi-fi', 'internet', 'reseau', 'connexion']],
+  [czCode, ['code', 'cadenas', ' cle ', ' cles ', ' clef', 'nuki', 'portail', ' porte ', ' entrer ']],
+  [czBook, ['reserv', 'directement', 'prochaine fois', 'revenir', ' louer', 'disponibilit', 'book']],
+  [czGuide('clim'), ['clim', 'chauffage', 'chauffer', 'rafraich']],
+  [czGuide('tv'), [' tele', ' tv', 'television', 'netflix', 'chaine', 'caster', 'chromecast']],
+  [czGuide('plaque'), ['plaque', 'cuisson', 'cuisiner', 'induction', ' lo ']],
+  [czGuide('canape'), ['canape', ' lit ', 'dormir', 'couchage', 'convertible']],
+  [czDepart, ['depart', 'partir', 'part a quelle', 'check-out', 'checkout', 'quitter', 'rendre les']],
+  [czArrivee, ['arrivee', 'arriver', 'check-in', 'checkin', 'garer', 'parking', 'stationn', 'voiture']],
+  [czSurf, ['surf', 'vague', 'planche', 'glisse', 'bodyboard', 'houle']],
+  [czWaste, ['poubelle', 'dechet', 'verre', 'ordure', ' tri ', 'recycl', 'bouteille', 'jeter', 'emballage']],
+  [czHike, ['rando', 'sentier', 'promenade', 'balade', 'oiseau', 'nature', 'foret']],
+  [czPeche, ['peche', 'pecher', 'crabe', 'palourde', 'coque', 'donace', 'crevette', 'estran', 'maree basse']],
+  [czSunset, ['coucher', 'sunset', 'crepuscule']],
+  [czSwim, ['baign', 'nager', 'plage', ' eau ', 'maree haute', 'pleine mer']],
+  [czMaree, ['maree', 'coef']],
+  [czFood, ['huitre', 'manger', 'restaurant', 'resto', 'diner', 'dejeuner', 'cabane', 'apero', 'boire', ' bar ']],
+  [czShop, ['course', 'marche', 'boulang', ' pain', 'croissant', 'supermarche', 'lidl', 'leclerc', 'epicerie']],
+  [czMeteo, ['meteo', ' temps', 'pluie', 'pleuv', 'soleil', ' vent', 'chaud', 'froid', 'temperature', ' beau']],
+  [czBoat, ['bateau', 'navette', 'ferret', 'arcachon', 'dune', 'pilat', 'velo']],
+  [czSortir, ['week', 'faire', 'idee', 'activite', 'sortie', 'sortir', 'agenda', 'programme', 'evenement', 'concert', 'spectacle', 'visite', 'enfant']],
+  [czMerci, ['merci', 'super', 'genial', 'parfait', ' top']],
+  [czHello, ['bonjour', 'salut', 'hello', 'coucou', 'bonsoir']]
+];
+function czAnswer(q){
+  var n = ' ' + norm(q).replace(/[^a-z0-9' -]/g, ' ').replace(/\s+/g, ' ') + ' ', best = null, bs = 0;
+  CZ_INTENTS.forEach(function(it){ var s = 0; it[1].forEach(function(k){ if (n.indexOf(k) > -1) s++; }); if (s > bs){ bs = s; best = it[0]; } });
+  try { return best ? best(n) : czFallback(); } catch(e){ return czFallback(); }
+}
+
+/* ---------- Affichage ---------- */
+function czFmt(t){
+  return String(t).split(/\n+/).map(function(s){ return s.trim(); }).filter(Boolean).map(function(p){
+    var it = /^_.*_$/.test(p); if (it) p = p.slice(1, -1);
+    return '<p' + (it ? ' class="cz-note"' : '') + '>' + esc(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*\*/g, '') + '</p>'; }).join('');
+}
+var CZ_EN = {'Les marées':'Tides', 'Courbe et horaires du SHOM':'SHOM tide curve & times', 'La météo':'Weather', 'Heure par heure, vent, UV':'Hour by hour, wind, UV', "L'agenda":'Events', 'Tous les événements à venir':'All upcoming events', 'Sur la carte Explorer':'On the Explore map', 'Tous nos spots':'All our spots', '7 spots autour du Bassin':'7 spots around the Bay', 'Toutes nos adresses':'All our places', 'Toutes les courses':'All shops', 'Les points de collecte':'Collection points', 'Tous les points de collecte':'All collection points', 'Toutes les randonnées':'All hikes', '5 balades autour du Bassin':'5 walks around the Bay', 'Tous les spots de surf':'All surf spots', 'Classés par niveau, houle en direct':'By level, live swell', 'Avant de partir':'Before you leave', 'La check-list du départ':'Check-out checklist', 'Arriver au Cocon':'Arriving at the Cocon', 'Parking, portail, porte':'Parking, gate, door', 'Appeler le 15':'Call 15 (ambulance)', 'SAMU':'Emergency medical service', "Appeler l'hôpital":'Call the hospital', 'Hôpital Privé Wallerstein · urgences':'Wallerstein hospital · A&E'};
+function czActEl(a){
+  var ic, t, s, run = null, href = null, en = LANG === 'en';
+  if (a.k === 'place'){ var p = czPlace(a.id); if (!p) return null; ic = p.e; t = p.name[LANG] || p.name.fr; s = (p.k ? p.k[LANG] || p.k.fr : '') + (p.lat ? ' · ' + distTxt(p) : ''); run = function(){ czGoPlace(a.id); }; }
+  else if (a.k === 'guide'){ var g = GUIDES[a.id]; if (!g) return null; ic = '▶'; t = en ? 'Animated guide: ' + g.t[1] : 'Guide animé : ' + g.t[0].charAt(0).toLowerCase() + g.t[0].slice(1); s = g.sub[en ? 1 : 0]; run = function(){ czClose(); openGuide(a.id); }; }
+  else if (a.k === 'go'){ ic = a.ic; t = en ? CZ_EN[a.t] || a.t : a.t; s = en ? CZ_EN[a.s] || a.s : a.s; run = function(){ czClose(); if (location.hash === a.h) route(); else location.hash = a.h; }; }
+  else if (a.k === 'wifi'){ ic = '📶'; t = T('Copier le mot de passe Wi-Fi', 'Copy the Wi-Fi password'); s = T('Réseau', 'Network') + ' Bbox-74F8BEB4-Plus'; run = function(){ copyWifi(null); }; }
+  else if (a.k === 'msg'){ ic = '💬'; t = T("Écrire à l'hôte", 'Message your host'); s = T('Messagerie Airbnb', 'Airbnb messages'); href = CZ_MSG; }
+  else if (a.k === 'ig'){ ic = '📸'; t = '@tinyhouse.33740'; s = T("S'abonner sur Instagram", 'Follow on Instagram'); href = CZ_IG; }
+  else if (a.k === 'tel'){ ic = '📞'; t = a.t; s = a.s; href = 'tel:' + a.n; }
+  else return null;
+  var el = document.createElement(href ? 'a' : 'button');
+  el.className = 'cz-act';
+  if (href){ el.href = href; if (/^http/.test(href)){ el.target = '_blank'; el.rel = 'noopener'; } }
+  else { el.type = 'button'; el.addEventListener('click', run); }
+  el.innerHTML = '<span class="ic">' + ic + '</span><span><b>' + esc(t) + '</b><small>' + esc(s) + '</small></span><span class="chev">' + (href && /^http/.test(href) ? '↗' : '›') + '</span>';
+  return el;
+}
+function czNearBottom(){ var m = $('#czMsgs'); return m.scrollHeight - m.scrollTop - m.clientHeight < 90; }
+function czBottom(){ var m = $('#czMsgs'); m.scrollTop = m.scrollHeight; }
+function czAdd(cls, html){ var d = document.createElement('div'); d.className = 'czb ' + cls; d.innerHTML = html; $('#czMsgs').appendChild(d); czBottom(); return d; }
+function czPaint(el, r, final){
+  var stick = czNearBottom();
+  el.innerHTML = czFmt(r.t);
+  if (final && r.a && r.a.length){ var box = document.createElement('div'); box.className = 'cz-acts'; r.a.forEach(function(a){ var x = czActEl(a); if (x) box.appendChild(x); }); if (box.children.length) el.appendChild(box); }
+  if (stick || final) czBottom();
+}
+/* Réponse de l'IA : texte + marqueurs [[...]] transformés en boutons */
+function czFromAI(text, unknown){
+  var acts = [], seen = {};
+  var add = function(a){ var k = JSON.stringify(a); if (!seen[k] && acts.length < 4){ seen[k] = 1; acts.push(a); } };
+  var t = String(text).replace(/\[\[\s*([^\]]{1,40}?)\s*\]\]/g, function(m, inner){
+    var parts = inner.toLowerCase().split(':'), k = parts[0].trim(), id = (parts[1] || '').trim();
+    if (!id && czPlace(k)){ id = k; k = 'lieu'; }
+    if (!id && GUIDES[k]){ id = k; k = 'guide'; }
+    if (k === 'lieu' && czPlace(id)) add({k:'place', id:id});
+    else if (k === 'guide' && GUIDES[id]) add({k:'guide', id:id});
+    else if (k === 'categorie' && XCAT[id]) add({k:'go', h:'#explore/' + id, ic:XCAT[id][1], t:XCAT[id][LANG === 'en' ? 3 : 2], s:'Sur la carte Explorer'});
+    else if (k === 'marees') add(CZ_TIDE);
+    else if (k === 'meteo') add({k:'go', h:'#live/weather', ic:'⛅', t:'La météo', s:'Heure par heure, vent, UV'});
+    else if (k === 'agenda') add({k:'go', h:'#news/agenda', ic:'📅', t:"L'agenda", s:'Tous les événements à venir'});
+    else if (k === 'hote' || k === 'inconnu') add({k:'msg'});
+    else if (k === 'instagram') add({k:'ig'});
+    else if (k === 'wifi') add({k:'wifi'});
+    return '';
+  }).replace(/[ \t]+\n/g, '\n').trim();
+  if (unknown) add({k:'msg'});
+  return {t:t, a:acts};
+}
+/* Données du moment envoyées à l'IA avec chaque question */
+function czContext(){
+  var now = Date.now(), L = [], g = S.guest || {};
+  L.push('Maintenant : ' + fmtD(now, {weekday:'long', day:'numeric', month:'long', year:'numeric'}) + ', ' + fmtT(now) + " (heure d'Arès).");
+  if (g.arr || g.dep) L.push('Séjour du voyageur : ' + (g.arr ? 'arrivée le ' + g.arr : '') + (g.arr && g.dep ? ', ' : '') + (g.dep ? 'départ le ' + g.dep : '') + '.');
+  var E = extIn(now - 3*3600e3, now + 54*3600e3);
+  if (E.length) L.push('Marées (BM = basse mer, PM = pleine mer) : ' + E.map(function(e){ var cf = e.coef || coefOfDay(dayKey(e.t)); return e.type + ' ' + czDay(e.t) + ' ' + fmtT(e.t) + (cf ? ' coef ' + cf : ''); }).join(' ; ') + '.');
+  var c = S.wx && S.wx.current;
+  if (c) L.push('Météo actuelle : ' + wxInfo(c.weather_code, c.is_day).label.toLowerCase() + ', ' + Math.round(c.temperature_2m) + ' °C, vent ' + Math.round(c.wind_speed_10m) + ' km/h.');
+  var d = S.wx && S.wx.daily;
+  if (d) [0, 1, 2, 3].forEach(function(i){ var k = addDays(todayKey(), i), j = d.time.indexOf(k); if (j < 0) return; L.push('Météo ' + czDay(dayStart(k) + 12*3600e3) + ' : ' + wxInfo(d.weather_code[j], 1).label.toLowerCase() + ', ' + Math.round(d.temperature_2m_min[j]) + ' à ' + Math.round(d.temperature_2m_max[j]) + ' °C, pluie ' + (d.precipitation_probability_max[j] || 0) + ' %, vent max ' + Math.round(d.wind_speed_10m_max[j]) + ' km/h.'); });
+  var hs = hoursFrom(now, now + 12*3600e3).filter(function(h, i){ return i % 3 === 0; });
+  if (hs.length) L.push('Heure par heure : ' + hs.map(function(h){ return fmtT(h.t) + ' ' + Math.round(h.temp) + '°, ' + wxInfo(h.code, h.day).label.toLowerCase() + ', nuages ' + h.cc + ' %'; }).join(' ; ') + '.');
+  [0, 1].forEach(function(i){ var k = addDays(todayKey(), i), sn = sunFor(k), w = czWxAt(sn.set); L.push('Coucher du soleil ' + czDay(sn.set) + ' : ' + fmtT(sn.set) + (w ? ' (nuages ' + w.cc + ' %)' : '') + ' ; lever ' + fmtT(sn.rise) + '.'); });
+  if (S.sea && S.sea.sst) L.push('Eau du Bassin : ' + Math.round(S.sea.sst) + ' °C.');
+  if (S.surf && S.surf.wave != null) L.push('Houle côté océan : ' + num(S.surf.wave, 1) + ' m, période ' + Math.round(S.surf.period || 0) + ' s.');
+  var sw = nextSwim(now); if (sw) L.push('Prochain bon créneau baignade devant Arès : ' + czDay(sw.a) + ' de ' + fmtT(sw.a) + ' à ' + fmtT(sw.b) + '.');
+  var mi = marketInfo(); L.push("Marché d'Arès : " + mi.txt + (mi.sub ? ' (' + mi.sub + ')' : '') + '.');
+  var ag = agendaItems().filter(function(it){ return it.ev.start < now + 8*864e5; }).slice(0, 8);
+  if (ag.length) L.push('Agenda local : ' + ag.map(function(it){ return it.title + ' (' + whenTxt(it.ev) + (it.town && it.town.n ? ', ' + it.town.n : '') + ')'; }).join(' ; ') + '.');
+  return L.join('\n').slice(0, 3400);
+}
+function czType(el, r){
+  CZ.busy = true;
+  var done = function(){ czPaint(el, r, true); CZ.busy = false; };
+  if (RM){ done(); return; }
+  var words = r.t.split(/(\s+)/), i = 0;
+  (function tick(){ i = Math.min(words.length, i + 5); if (i >= words.length) return done(); czPaint(el, {t:words.slice(0, i).join('')}, false); setTimeout(tick, 35); })();
+}
+function czFallback2(q, el, why){
+  var r = czAnswer(q), note = why === 'device' ? T("Vous avez posé beaucoup de questions aujourd'hui : pour la suite, écrivez-nous sur Airbnb.", "You've asked a lot of questions today: for anything else, message us on Airbnb.") : T("Le concierge se repose jusqu'à demain : voici la réponse automatique la plus proche.", "The concierge is resting until tomorrow: here is the closest automatic answer.");
+  r = {t:r.t + '\n_' + note + '_', a:(r.a || []).concat([{k:'msg'}])};
+  czType(el, r);
+}
+function czAsk(q){
+  q = String(q || '').trim(); if (!q || CZ.busy) return;
+  $('#czIn').value = '';
+  czAdd('me', '<p>' + esc(q) + '</p>');
+  var el = czAdd('bot', '<span class="cz-typing" aria-label="Le Cocon écrit"><i></i><i></i><i></i></span>');
+  if (!CZ_LIVE || CZ.off){
+    var r = czAnswer(q); CZ.busy = true;
+    setTimeout(function(){ CZ.busy = false; czType(el, r); }, RM ? 200 : 650);
+    return;
+  }
+  CZ.busy = true;
+  var cx = ''; try { cx = czContext(); } catch(e){}
+  var ctl = window.AbortController ? new AbortController() : null, to = setTimeout(function(){ if (ctl) ctl.abort(); }, 45000);
+  fetch(CZ_URL + '/chat', {method:'POST', headers:{'content-type':'application/json'}, signal:ctl ? ctl.signal : undefined,
+    body:JSON.stringify({q:q, history:CZ.turns.slice(-6), ctx:cx, lang:LANG})})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      clearTimeout(to); CZ.busy = false;
+      if (d.limited){ if (d.limited === 'day') CZ.off = true; return czFallback2(q, el, d.limited); }
+      if (d.error || !d.answer){ if (d.error === 'quota') CZ.off = true; return czFallback2(q, el, 'down'); }
+      CZ.turns.push({role:'user', content:q}, {role:'assistant', content:d.answer});
+      if (CZ.turns.length > 12) CZ.turns = CZ.turns.slice(-12);
+      var r = czFromAI(d.answer, d.unknown);
+      if (d.remaining != null && d.remaining <= 3) r.t += '\n_' + (d.remaining ? T('Encore ' + d.remaining + ' question' + (d.remaining > 1 ? 's possibles' : ' possible') + " aujourd'hui.", d.remaining + ' question' + (d.remaining > 1 ? 's' : '') + ' left today.') : T("C'était la dernière question pour aujourd'hui.", 'That was the last question for today.')) + '_';
+      czType(el, r);
+    })
+    .catch(function(){ clearTimeout(to); CZ.busy = false; czFallback2(q, el, 'down'); });
+}
+function czCtx(){
+  var now = Date.now(), out = [], pm = nextPM(now), c = S.wx && S.wx.current, sn = sunFor(todayKey());
+  out.push(cap(fmtD(now, {weekday:'short', day:'numeric', month:'short'})) + ' · ' + fmtT(now));
+  if (pm) out.push(T('Pleine mer ', 'High tide ') + fmtT(pm.t) + (pm.coef ? ' · coef ' + pm.coef : ''));
+  if (c) out.push(Math.round(c.temperature_2m) + ' °C, ' + wxInfo(c.weather_code, c.is_day).label.toLowerCase());
+  out.push(now > sn.set ? T('Coucher demain ', 'Sunset tomorrow ') + fmtT(sunFor(addDays(todayKey(), 1)).set) : T('Coucher ', 'Sunset ') + fmtT(sn.set));
+  if (S.sea && S.sea.sst) out.push(T('Eau ', 'Water ') + Math.round(S.sea.sst) + ' °C');
+  $('#czCtx').innerHTML = out.map(function(s){ return '<span>' + esc(s) + '</span>'; }).join('');
+}
+function czGreet(){
+  CZ.greeted = true; var g = S.guest || {};
+  czAdd('bot', czFmt(T('Bonjour', 'Hello') + (g.name ? ' ' + g.name : '') + T(' ! Je suis le concierge du Cocon. Marées, pêche à pied, couchers de soleil, bonnes adresses ou équipements de la maison : posez-moi vos questions, je réponds avec les données du moment.', "! I'm the Cocon's concierge. Tides, foraging, sunsets, good addresses or the house's equipment: ask me anything, I answer with live data.")));
+  if (CZ_LIVE) czAdd('bot note', '<p>' + T("Je suis une IA : je réponds à partir des infos du Cocon et des données du moment, dans votre langue. Quand je ne sais pas, je vous dirai de nous écrire. Ne partagez pas d'informations personnelles.", "I'm an AI: I answer from the Cocon's information and live data, in your language. When I don't know, I'll tell you to message us. Please don't share personal information.") + '</p>');
+  else czAdd('bot note', "<p><b>Aperçu.</b> Dans cette version de démonstration, je reconnais les questions les plus courantes. La version finale, avec l'IA, comprendra toutes vos questions, dans toutes les langues.</p>");
+}
+function czOpen(q, focus){
+  if (!CZ.greeted) czGreet();
+  $('#czP').classList.add('on'); $('#czBg').classList.add('on'); document.body.classList.add('czon');
+  if (!isWide()) document.body.classList.add('lock');
+  czCtx();
+  if (focus) $('#czIn').focus();
+  if (q) setTimeout(function(){ czAsk(q); }, 380);
+}
+function czClose(){
+  $('#czP').classList.remove('on'); $('#czBg').classList.remove('on'); document.body.classList.remove('czon');
+  if (!$('#gp').classList.contains('on') && !$('#sv').classList.contains('on')) document.body.classList.remove('lock');
+}
+function czGoPlace(id){
+  var p = czPlace(id); if (!p) return;
+  czClose();
+  try { sessionStorage.setItem('cocon.xintro', '1'); } catch(e){}
+  var h = '#explore/' + p.cat;
+  if (location.hash === h) route(); else location.hash = h;
+  setTimeout(function(){ initMap().then(function(){ setTimeout(function(){ selectPlace(id, true); }, 450); }); }, 120);
+}
+function czChipsRender(){
+  var en = LANG === 'en', mk = function(box, list){ if (!box) return; box.innerHTML = ''; list.forEach(function(c){ var b = document.createElement('button'); b.type = 'button'; b.textContent = en ? c[2] : c[0]; b.setAttribute('data-czq', en ? c[3] : c[1]); box.appendChild(b); }); };
+  mk($('#czChips'), CZ_CHIPS); mk($('#czcChips'), CZ_HOME.map(function(i){ return CZ_CHIPS[i]; }));
+  var inp = $('#czIn'); if (inp) inp.placeholder = T('Posez votre question…', 'Ask your question…');
+}
+function initConcierge(){
+  czChipsRender();
+  $$('[data-lang]').forEach(function(b){ b.addEventListener('click', function(){ setTimeout(czChipsRender, 50); }); });
+  document.addEventListener('click', function(e){
+    var q = e.target.closest('[data-czq]'); if (q){ e.preventDefault(); if ($('#czP').classList.contains('on')) czAsk(q.getAttribute('data-czq')); else czOpen(q.getAttribute('data-czq')); return; }
+    var o = e.target.closest('[data-cz]'); if (o){ e.preventDefault(); czOpen(null, o.hasAttribute('data-cz-focus')); }
+  });
+  $('#czBg').addEventListener('click', czClose);
+  $('#czX').addEventListener('click', czClose);
+  $('#czForm').addEventListener('submit', function(e){ e.preventDefault(); czAsk($('#czIn').value); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && $('#czP').classList.contains('on')) czClose(); });
+}
+initConcierge();
 })();
 </script>
 </body>
