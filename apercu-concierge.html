@@ -962,6 +962,7 @@ body.mapmode .czfab,body.czon .czfab{opacity:0;pointer-events:none;transform:sca
 .czb.bot strong{font-weight:600}
 .czb.note{font-size:12.5px;color:var(--muted);background:none;border-style:dashed}
 .czb.note b{color:var(--accent)}
+.czb p.cz-note{font-size:12.5px;color:var(--muted);font-style:italic}
 .cz-typing{display:inline-flex;gap:4px;padding:4px 2px}
 .cz-typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:czBlink 1.2s infinite}
 .cz-typing i:nth-child(2){animation-delay:.2s}
@@ -1108,7 +1109,7 @@ body.mapmode .czfab,body.czon .czfab{opacity:0;pointer-events:none;transform:sca
     </a>
 
     <div class="czc rv">
-      <div class="czc-top"><svg class="cz-logo" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#0A0F15"/><circle cx="40" cy="22" r="8" fill="#E8CF9C"/><path d="M8 40c6-6 12-6 18 0s12 6 18 0 9-5 12-3" stroke="#C9A96E" stroke-width="5" fill="none" stroke-linecap="round"/></svg><div class="czc-tx"><b>Une question ? Demandez au Cocon</b><small>Marées, restos, pêche à pied, la clim… réponse immédiate</small></div><span class="cz-tag">Aperçu</span></div>
+      <div class="czc-top"><svg class="cz-logo" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#0A0F15"/><circle cx="40" cy="22" r="8" fill="#E8CF9C"/><path d="M8 40c6-6 12-6 18 0s12 6 18 0 9-5 12-3" stroke="#C9A96E" stroke-width="5" fill="none" stroke-linecap="round"/></svg><div class="czc-tx"><b>Une question ? Demandez au Cocon</b><small>Marées, restos, pêche à pied, la clim… réponse immédiate</small></div><span class="cz-tag">IA</span></div>
       <button class="czc-in" type="button" data-cz data-cz-focus>Posez votre question…<span class="cz-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span></button>
       <div class="czc-chips">
         <button type="button" data-czq="Où voir le coucher de soleil ce soir ?">🌅 Coucher de soleil</button>
@@ -1592,7 +1593,7 @@ body.mapmode .czfab,body.czon .czfab{opacity:0;pointer-events:none;transform:sca
 <button class="czfab" id="czFab" type="button" data-cz aria-label="Demandez au Cocon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 20.5l1.6-5A8.4 8.4 0 1 1 21 11.5z"/><path d="M12 7.6l1 2.4 2.4 1-2.4 1-1 2.4-1-2.4-2.4-1 2.4-1z" fill="currentColor" stroke="none"/></svg><span>Demandez au Cocon</span></button>
 <div class="czbg" id="czBg"></div>
 <section class="czp" id="czP" role="dialog" aria-modal="true" aria-labelledby="czTitle">
-  <header class="czp-h"><svg class="cz-logo" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#0A0F15"/><circle cx="40" cy="22" r="8" fill="#E8CF9C"/><path d="M8 40c6-6 12-6 18 0s12 6 18 0 9-5 12-3" stroke="#C9A96E" stroke-width="5" fill="none" stroke-linecap="round"/></svg><div class="czp-id"><b id="czTitle">Le Cocon</b><small>Votre concierge à Arès <span class="cz-tag">Aperçu</span></small></div>
+  <header class="czp-h"><svg class="cz-logo" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#0A0F15"/><circle cx="40" cy="22" r="8" fill="#E8CF9C"/><path d="M8 40c6-6 12-6 18 0s12 6 18 0 9-5 12-3" stroke="#C9A96E" stroke-width="5" fill="none" stroke-linecap="round"/></svg><div class="czp-id"><b id="czTitle">Le Cocon</b><small>Votre concierge à Arès <span class="cz-tag">IA</span></small></div>
     <button class="czp-x" id="czX" type="button" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
   <div class="czp-ctx" id="czCtx" aria-label="Ce que le concierge sait en ce moment"></div>
   <div class="czp-msgs" id="czMsgs" aria-live="polite"></div>
@@ -3391,7 +3392,9 @@ boot();
    Version de démonstration : les questions courantes sont reconnues par mots-clés
    et les réponses sont calculées avec les données en direct du livret.
    La version finale remplacera czAnswer() par un appel à l'IA via un relais. */
-var CZ = {busy:false, greeted:false};
+var CZ = {busy:false, greeted:false, turns:[], off:false};
+var CZ_URL = 'https://cocon-concierge.cocon-du-bassin.workers.dev';   /* adresse du serveur du concierge ; vide = réponses préparées uniquement */
+var CZ_LIVE = /^https:/.test(CZ_URL);
 var CZ_MSG = 'https://www.airbnb.fr/guest/messages', CZ_IG = 'https://www.instagram.com/tinyhouse.33740/';
 var CZ_TIDE = {k:'go', h:'#live/tide', ic:'🌊', t:'Les marées', s:'Courbe et horaires du SHOM'};
 var CZ_CHIPS = [
@@ -3560,7 +3563,8 @@ function czAnswer(q){
 /* ---------- Affichage ---------- */
 function czFmt(t){
   return String(t).split(/\n+/).map(function(s){ return s.trim(); }).filter(Boolean).map(function(p){
-    return '<p>' + esc(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*\*/g, '') + '</p>'; }).join('');
+    var it = /^_.*_$/.test(p); if (it) p = p.slice(1, -1);
+    return '<p' + (it ? ' class="cz-note"' : '') + '>' + esc(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*\*/g, '') + '</p>'; }).join('');
 }
 function czActEl(a){
   var ic, t, s, run = null, href = null;
@@ -3588,16 +3592,87 @@ function czPaint(el, r, final){
   if (final && r.a && r.a.length){ var box = document.createElement('div'); box.className = 'cz-acts'; r.a.forEach(function(a){ var x = czActEl(a); if (x) box.appendChild(x); }); if (box.children.length) el.appendChild(box); }
   if (stick || final) czBottom();
 }
+/* Réponse de l'IA : texte + marqueurs [[...]] transformés en boutons */
+function czFromAI(text, unknown){
+  var acts = [], seen = {};
+  var add = function(a){ var k = JSON.stringify(a); if (!seen[k] && acts.length < 4){ seen[k] = 1; acts.push(a); } };
+  var t = String(text).replace(/\[\[\s*([a-z]+)\s*(?::\s*([a-z0-9-]+))?\s*\]\]/gi, function(m, k, id){
+    k = k.toLowerCase(); id = (id || '').toLowerCase();
+    if (k === 'lieu' && czPlace(id)) add({k:'place', id:id});
+    else if (k === 'guide' && GUIDES[id]) add({k:'guide', id:id});
+    else if (k === 'categorie' && XCAT[id]) add({k:'go', h:'#explore/' + id, ic:XCAT[id][1], t:XCAT[id][2], s:'Sur la carte Explorer'});
+    else if (k === 'marees') add(CZ_TIDE);
+    else if (k === 'meteo') add({k:'go', h:'#live/weather', ic:'⛅', t:'La météo', s:'Heure par heure, vent, UV'});
+    else if (k === 'agenda') add({k:'go', h:'#news/agenda', ic:'📅', t:"L'agenda", s:'Tous les événements à venir'});
+    else if (k === 'hote' || k === 'inconnu') add({k:'msg'});
+    else if (k === 'instagram') add({k:'ig'});
+    else if (k === 'wifi') add({k:'wifi'});
+    return '';
+  }).replace(/[ \t]+\n/g, '\n').trim();
+  if (unknown) add({k:'msg'});
+  return {t:t, a:acts};
+}
+/* Données du moment envoyées à l'IA avec chaque question */
+function czContext(){
+  var now = Date.now(), L = [], g = S.guest || {};
+  L.push('Maintenant : ' + fmtD(now, {weekday:'long', day:'numeric', month:'long', year:'numeric'}) + ', ' + fmtT(now) + " (heure d'Arès).");
+  if (g.arr || g.dep) L.push('Séjour du voyageur : ' + (g.arr ? 'arrivée le ' + g.arr : '') + (g.arr && g.dep ? ', ' : '') + (g.dep ? 'départ le ' + g.dep : '') + '.');
+  var E = extIn(now - 3*3600e3, now + 54*3600e3);
+  if (E.length) L.push('Marées (BM = basse mer, PM = pleine mer) : ' + E.map(function(e){ var cf = e.coef || coefOfDay(dayKey(e.t)); return e.type + ' ' + czDay(e.t) + ' ' + fmtT(e.t) + (cf ? ' coef ' + cf : ''); }).join(' ; ') + '.');
+  var c = S.wx && S.wx.current;
+  if (c) L.push('Météo actuelle : ' + wxInfo(c.weather_code, c.is_day).label.toLowerCase() + ', ' + Math.round(c.temperature_2m) + ' °C, vent ' + Math.round(c.wind_speed_10m) + ' km/h.');
+  var d = S.wx && S.wx.daily;
+  if (d) [0, 1, 2, 3].forEach(function(i){ var k = addDays(todayKey(), i), j = d.time.indexOf(k); if (j < 0) return; L.push('Météo ' + czDay(dayStart(k) + 12*3600e3) + ' : ' + wxInfo(d.weather_code[j], 1).label.toLowerCase() + ', ' + Math.round(d.temperature_2m_min[j]) + ' à ' + Math.round(d.temperature_2m_max[j]) + ' °C, pluie ' + (d.precipitation_probability_max[j] || 0) + ' %, vent max ' + Math.round(d.wind_speed_10m_max[j]) + ' km/h.'); });
+  var hs = hoursFrom(now, now + 12*3600e3).filter(function(h, i){ return i % 3 === 0; });
+  if (hs.length) L.push('Heure par heure : ' + hs.map(function(h){ return fmtT(h.t) + ' ' + Math.round(h.temp) + '°, ' + wxInfo(h.code, h.day).label.toLowerCase() + ', nuages ' + h.cc + ' %'; }).join(' ; ') + '.');
+  [0, 1].forEach(function(i){ var k = addDays(todayKey(), i), sn = sunFor(k), w = czWxAt(sn.set); L.push('Coucher du soleil ' + czDay(sn.set) + ' : ' + fmtT(sn.set) + (w ? ' (nuages ' + w.cc + ' %)' : '') + ' ; lever ' + fmtT(sn.rise) + '.'); });
+  if (S.sea && S.sea.sst) L.push('Eau du Bassin : ' + Math.round(S.sea.sst) + ' °C.');
+  if (S.surf && S.surf.wave != null) L.push('Houle côté océan : ' + num(S.surf.wave, 1) + ' m, période ' + Math.round(S.surf.period || 0) + ' s.');
+  var sw = nextSwim(now); if (sw) L.push('Prochain bon créneau baignade devant Arès : ' + czDay(sw.a) + ' de ' + fmtT(sw.a) + ' à ' + fmtT(sw.b) + '.');
+  var mi = marketInfo(); L.push("Marché d'Arès : " + mi.txt + (mi.sub ? ' (' + mi.sub + ')' : '') + '.');
+  var ag = agendaItems().filter(function(it){ return it.ev.start < now + 8*864e5; }).slice(0, 8);
+  if (ag.length) L.push('Agenda local : ' + ag.map(function(it){ return it.title + ' (' + whenTxt(it.ev) + (it.town && it.town.n ? ', ' + it.town.n : '') + ')'; }).join(' ; ') + '.');
+  return L.join('\n').slice(0, 3400);
+}
+function czType(el, r){
+  CZ.busy = true;
+  var done = function(){ czPaint(el, r, true); CZ.busy = false; };
+  if (RM){ done(); return; }
+  var words = r.t.split(/(\s+)/), i = 0;
+  (function tick(){ i = Math.min(words.length, i + 5); if (i >= words.length) return done(); czPaint(el, {t:words.slice(0, i).join('')}, false); setTimeout(tick, 35); })();
+}
+function czFallback2(q, el, why){
+  var r = czAnswer(q), note = why === 'device' ? "Vous avez posé beaucoup de questions aujourd'hui : pour la suite, écrivez-nous sur Airbnb." : "Le concierge se repose jusqu'à demain : voici la réponse automatique la plus proche.";
+  r = {t:r.t + '\n_' + note + '_', a:(r.a || []).concat([{k:'msg'}])};
+  czType(el, r);
+}
 function czAsk(q){
   q = String(q || '').trim(); if (!q || CZ.busy) return;
   $('#czIn').value = '';
   czAdd('me', '<p>' + esc(q) + '</p>');
-  var el = czAdd('bot', '<span class="cz-typing" aria-label="Le Cocon écrit"><i></i><i></i><i></i></span>'), r = czAnswer(q);
+  var el = czAdd('bot', '<span class="cz-typing" aria-label="Le Cocon écrit"><i></i><i></i><i></i></span>');
+  if (!CZ_LIVE || CZ.off){
+    var r = czAnswer(q); CZ.busy = true;
+    setTimeout(function(){ CZ.busy = false; czType(el, r); }, RM ? 200 : 650);
+    return;
+  }
   CZ.busy = true;
-  var done = function(){ czPaint(el, r, true); CZ.busy = false; };
-  if (RM){ setTimeout(done, 300); return; }
-  var words = r.t.split(/(\s+)/), i = 0;
-  setTimeout(function tick(){ i = Math.min(words.length, i + 5); if (i >= words.length) return done(); czPaint(el, {t:words.slice(0, i).join('')}, false); setTimeout(tick, 40); }, 650);
+  var cx = ''; try { cx = czContext(); } catch(e){}
+  var ctl = window.AbortController ? new AbortController() : null, to = setTimeout(function(){ if (ctl) ctl.abort(); }, 45000);
+  fetch(CZ_URL + '/chat', {method:'POST', headers:{'content-type':'application/json'}, signal:ctl ? ctl.signal : undefined,
+    body:JSON.stringify({q:q, history:CZ.turns.slice(-6), ctx:cx, lang:LANG})})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      clearTimeout(to); CZ.busy = false;
+      if (d.limited){ if (d.limited === 'day') CZ.off = true; return czFallback2(q, el, d.limited); }
+      if (d.error || !d.answer){ if (d.error === 'quota') CZ.off = true; return czFallback2(q, el, 'down'); }
+      CZ.turns.push({role:'user', content:q}, {role:'assistant', content:d.answer});
+      if (CZ.turns.length > 12) CZ.turns = CZ.turns.slice(-12);
+      var r = czFromAI(d.answer, d.unknown);
+      if (d.remaining != null && d.remaining <= 3) r.t += '\n_' + (d.remaining ? 'Encore ' + d.remaining + ' question' + (d.remaining > 1 ? 's' : '') + " possible" + (d.remaining > 1 ? 's' : '') + " aujourd'hui." : "C'était la dernière question pour aujourd'hui.") + '_';
+      czType(el, r);
+    })
+    .catch(function(){ clearTimeout(to); CZ.busy = false; czFallback2(q, el, 'down'); });
 }
 function czCtx(){
   var now = Date.now(), out = [], pm = nextPM(now), c = S.wx && S.wx.current, sn = sunFor(todayKey());
@@ -3611,7 +3686,8 @@ function czCtx(){
 function czGreet(){
   CZ.greeted = true; var g = S.guest || {};
   czAdd('bot', czFmt('Bonjour' + (g.name ? ' ' + g.name : '') + ' ! Je suis le concierge du Cocon. Marées, pêche à pied, couchers de soleil, bonnes adresses ou équipements de la maison : posez-moi vos questions, je réponds avec les données du moment.'));
-  czAdd('bot note', "<p><b>Aperçu.</b> Dans cette version de démonstration, je reconnais les questions les plus courantes. La version finale, avec l'IA, comprendra toutes vos questions, dans toutes les langues.</p>");
+  if (CZ_LIVE) czAdd('bot note', "<p>Je suis une IA : je réponds à partir des infos du Cocon et des données du moment, dans votre langue. Quand je ne sais pas, je vous dirai de nous écrire. Ne partagez pas d'informations personnelles.</p>");
+  else czAdd('bot note', "<p><b>Aperçu.</b> Dans cette version de démonstration, je reconnais les questions les plus courantes. La version finale, avec l'IA, comprendra toutes vos questions, dans toutes les langues.</p>");
 }
 function czOpen(q, focus){
   if (!CZ.greeted) czGreet();
