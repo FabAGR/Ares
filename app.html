@@ -1267,7 +1267,9 @@ body.mapmode footer{display:none}
         <button class="fbtn" data-mapcat="bike">🚲 <span class="fr">Vélo</span><span class="en">Bike</span></button>
         <button class="fbtn" data-mapcat="sunset">🌅 <span class="fr">Couchers de soleil</span><span class="en">Sunsets</span></button>
         <button class="fbtn" data-mapcat="peche">🦀 <span class="fr">Pêche à pied</span><span class="en">Foraging</span></button>
+        <button class="fbtn" data-mapcat="hike">🥾 <span class="fr">Randonnées</span><span class="en">Hikes</span></button>
         <button class="fbtn" data-mapcat="health">🏥 <span class="fr">Hôpital</span><span class="en">Hospital</span></button>
+        <button class="fbtn" data-mapcat="waste">🗑️ <span class="fr">Poubelles & verre</span><span class="en">Bins & glass</span></button>
       </div>
       <div class="xlist" id="xlist"></div>
     </aside>
@@ -2417,7 +2419,9 @@ var XCATS = [
   ['bike', '🚲', 'À vélo', 'Cycling', '#D07E5F'],
   ['sunset', '🌅', 'Couchers de soleil', 'Sunset spots', '#F0A070'],
   ['peche', '🦀', 'Pêche à pied', 'Shore foraging', '#5FC2A5'],
-  ['health', '🏥', 'Hôpital', 'Hospital', '#E0604B']
+  ['hike', '🥾', 'Randonnées', 'Hikes', '#8DBF6A'],
+  ['health', '🏥', 'Hôpital', 'Hospital', '#E0604B'],
+  ['waste', '🗑️', 'Poubelles & verre', 'Bins & glass', '#9AA6B4']
 ];
 var XCAT = {}; XCATS.forEach(function(c){ XCAT[c[0]] = c; });
 var PLACES = [
@@ -2469,6 +2473,30 @@ var PLACES = [
     k:{fr:'Pêche interdite', en:'No foraging'}, tip:{fr:'Réserve naturelle nationale : la pêche à pied y est interdite. Le sentier des prés salés permet de la découvrir à pied.', en:'National nature reserve: foraging is forbidden here. The salt-marsh trail lets you discover it on foot.'}},
   {id:'hopital', cat:'health', e:'🏥', name:{fr:'Hôpital Privé Wallerstein', en:'Wallerstein Private Hospital'}, lat:44.7542, lon:-1.1290, tel:'0556038700', telTxt:'05 56 03 87 00', dest:'H%C3%B4pital+Priv%C3%A9+Wallerstein%2C+14+bis+Boulevard+Javal%2C+33740+Ar%C3%A8s',
     k:{fr:'Urgences · Arès', en:'Emergency department · Arès'}, tip:{fr:'14 bis boulevard Javal, Arès. Service d’urgences. En cas d’urgence vitale, appelez le 15 ou le 112.', en:'14 bis boulevard Javal, Arès. Emergency department. In a life-threatening emergency, call 15 or 112.'}},
+  {id:'rd-pres', cat:'hike', e:'🌾', name:{fr:"Les prés salés d'Arès", en:'The Arès salt marshes'}, lat:44.7662, lon:-1.1500, live:'lowtide', dest:'Rue+du+Port+Ostr%C3%A9icole%2C+33740+Ar%C3%A8s',
+    k:{fr:'Boucle 7,2 km · 2 h · facile', en:'7.2 km loop · 2 h · easy'},
+    tip:{fr:"Départ du parking du port ostréicole. Sentiers balisés dans la Réserve naturelle nationale des prés salés : marais, chenaux, forêt, passage par la cabane du Résinier, retour par le bourg. Sable et passages humides : bonnes chaussures, et plutôt à marée basse. Version courte : 2 km de la cabane du Résinier (Lège) jusqu'au port.", en:"Starts from the oyster-port car park. Waymarked trails through the national salt-marsh nature reserve: marshes, channels, forest, past the resin-tapper's hut, back through the village. Sand and wet patches: good shoes, ideally at low tide. Short version: 2 km from the resin-tapper's hut (Lège) to the port."}},
+  {id:'rd-littoral', cat:'hike', e:'🥾', name:{fr:"Le sentier du littoral jusqu'à Andernos", en:'The coastal path to Andernos'}, lat:44.7524, lon:-1.1238, bike:10, dest:'Bassin+de+Saint-Brice%2C+Ar%C3%A8s',
+    k:{fr:'Boucle 9 km · environ 2 h 30 · facile', en:'9 km loop · about 2.5 h · easy'},
+    tip:{fr:"Départ du bassin de Saint-Brice. À l'aller, le sentier du littoral (sable) jusqu'à la pointe des Quinconces et Andernos : port ostréicole, église Saint-Éloi du XIe siècle bâtie sur des vestiges gallo-romains, jetée de 232 m. Retour par la forêt du Coulin et la promenade du ruisseau du Cirès.", en:"Starts at the Saint-Brice pool. Out along the sandy coastal path to the Pointe des Quinconces and Andernos: oyster port, 11th-century Saint-Éloi church built on Gallo-Roman remains, 232 m pier. Back through the Coulin forest and along the Cirès stream."}},
+  {id:'rd-piraillan', cat:'hike', drive:[18, 13], e:'🌲', name:{fr:'Les réservoirs de Piraillan (Cap Ferret)', en:'Piraillan reservoirs (Cap Ferret)'}, lat:44.7097, lon:-1.2232, dest:'R%C3%A9servoirs+de+Piraillan%2C+L%C3%A8ge-Cap-Ferret',
+    k:{fr:'Boucle 2,1 km · 40 min · accès libre', en:'2.1 km loop · 40 min · free access'},
+    tip:{fr:"Anciens réservoirs à poissons et îlots boisés : 39 hectares protégés par le Conservatoire du littoral, entre forêt et Bassin. Deux circuits balisés depuis le parking : 2,1 km (40 min) ou 600 m (10 min). Pour aller plus loin, une boucle d'environ 11 km rejoint l'océan au Truc Vert.", en:"Former fish reservoirs and wooded islets: 39 protected hectares between forest and Bay. Two waymarked loops from the car park: 2.1 km (40 min) or 600 m (10 min). For more, an 11 km loop reaches the ocean at Le Truc Vert."}},
+  {id:'rd-graveyron', cat:'hike', drive:[27, 16], e:'🦢', name:{fr:'Le domaine de Graveyron (Audenge)', en:'Graveyron estate (Audenge)'}, lat:44.6785, lon:-1.0245, dest:'Port+d%27Audenge%2C+33980+Audenge',
+    k:{fr:'Boucle 5 km · oiseaux & marais', en:'5 km loop · birds & marshes'},
+    tip:{fr:"Départ du port d'Audenge. Anciens marais salants et bassins à poissons du Conservatoire du littoral : hérons, aigrettes, cygnes, cormorans. Au bout, la plage sauvage de Graveyron : baignade à marée haute. Prenez des jumelles. Pour une grande journée, le circuit voisin du domaine de Certes fait 14 km.", en:"Starts at Audenge harbour. Former salt pans and fish ponds: herons, egrets, swans, cormorants. At the end, the wild Graveyron beach: swim at high tide. Bring binoculars. For a full day, the neighbouring Certes loop is 14 km."}},
+  {id:'rd-teich', cat:'hike', drive:[45, 27], e:'🐦', name:{fr:'La réserve ornithologique du Teich', en:'Le Teich bird reserve'}, lat:44.6415, lon:-1.0219, dest:'Maison+de+la+Nature+du+Bassin+d%27Arcachon%2C+Le+Teich',
+    k:{fr:"Boucle 6 km · 20 cabanes d'observation", en:'6 km loop · 20 bird hides'},
+    tip:{fr:"Le grand rendez-vous des oiseaux du Bassin : une boucle de 6 km (ou 2,5 km) avec une cabane d'observation tous les 300 m environ. Entrée payante (9,90 € adulte, 7,70 € de 5 à 18 ans, gratuit avant 5 ans), ouvert tous les jours dès 10h, dernière entrée 1 h 30 avant la fermeture. Jumelles indispensables.", en:'The Bay\'s great birdwatching site: a 6 km loop (or 2.5 km) with a hide roughly every 300 m. Paid entry (€9.90 adult, €7.70 ages 5-18, free under 5), open daily from 10am, last entry 1.5 h before closing. Binoculars a must.'}},
+  {id:'dc-bremontier', cat:'waste', e:'🍾', name:{fr:'Borne à verre Brémontier', en:'Brémontier glass bank'}, lat:44.770568, lon:-1.134823, walk:2, dest:'Espace+Br%C3%A9montier%2C+33740+Ar%C3%A8s',
+    k:{fr:'Verre · juste à côté', en:'Glass · right next door'},
+    tip:{fr:"Juste à côté, devant l'Espace Brémontier. En vrac, sans sac : bouteilles, pots, bocaux et flacons, avec ou sans bouchon métallique, même non lavés. La vaisselle en verre et la porcelaine vont aux ordures ménagères.", en:'Right next door, by the Espace Brémontier. Loose, no bag: bottles, jars and flasks, with or without metal caps, no need to rinse. Glass tableware and china go in general waste.'}},
+  {id:'dc-port', cat:'waste', e:'🍾', name:{fr:'Borne à verre du port ostréicole', en:'Oyster-port glass bank'}, lat:44.766905, lon:-1.150378, dest:'Rue+du+Port+Ostr%C3%A9icole%2C+33740+Ar%C3%A8s',
+    k:{fr:'Verre · port d\'Arès', en:'Glass · Arès port'},
+    tip:{fr:"Pratique en revenant de la Cabane du Bout ou du sentier des prés salés.", en:'Handy on the way back from La Cabane du Bout or the salt-marsh trail.'}},
+  {id:'dc-dechetterie', cat:'waste', e:'♻️', name:{fr:"Conteneurs de la déchèterie d'Arès", en:'Arès recycling-centre bins'}, lat:44.776962, lon:-1.120364, dest:'D%C3%A9ch%C3%A8terie+d%27Ar%C3%A8s',
+    k:{fr:'Ordures ménagères, tri & verre', en:'General waste, recycling & glass'},
+    tip:{fr:"Trois conteneurs côte à côte : ordures ménagères (en sac), tri sélectif (tous les emballages et papiers, en vrac) et verre. Déchèterie : lundi au samedi 9h-12h30 et 14h-18h, dimanche 9h-12h30, fermée les jours fériés.", en:'Three bins side by side: general waste (bagged), recycling (all packaging and paper, loose) and glass. Recycling centre: Mon-Sat 9am-12.30pm and 2-6pm, Sun 9am-12.30pm, closed on bank holidays.'}},
   {id:'velo', cat:'bike', e:'🚲', name:{fr:'Le tour du Bassin à vélo', en:'Round-the-Bay cycle loop'}, url:BIKE_URL,
     k:{fr:'Piste cyclable', en:'Cycle path'}, tip:{fr:'Arès est sur la piste cyclable du tour du Bassin.', en:"Arès sits on the Bay's cycle loop."}}
 ];
@@ -2493,7 +2521,7 @@ function liveFor(p){
   }
   if (p.live === 'lowtide' && S.tide){
     var now = Date.now(), bm = S.tide.ext.filter(function(e){ if (e.type !== 'BM' || e.t < now - 3600e3) return false; var s = sunFor(dayKey(e.t)); return e.t > s.rise + 1800e3 && e.t < s.set - 1800e3; })[0];
-    if (bm){ var cf = coefOfDay(dayKey(bm.t)), kd = dayKey(bm.t) === todayKey() ? '' : dayKey(bm.t) === addDays(todayKey(), 1) ? T('demain ', 'tomorrow ') : cap(fmtD(bm.t, {weekday:'short'})) + ' '; return {c:cf && cf >= 80 ? 'ok' : '', t:'🦀 ' + T('Basse mer ', 'Low tide ') + kd + fmtT(bm.t) + (cf ? ' · coef ' + cf + (cf >= 80 ? T(' — idéal', ' — ideal') : '') : '')}; }
+    if (bm){ var cf = coefOfDay(dayKey(bm.t)), kd = dayKey(bm.t) === todayKey() ? '' : dayKey(bm.t) === addDays(todayKey(), 1) ? T('demain ', 'tomorrow ') : cap(fmtD(bm.t, {weekday:'short'})) + ' '; return {c:cf && cf >= 80 ? 'ok' : '', t:(p.cat === 'hike' ? '🌊 ' : '🦀 ') + T('Basse mer ', 'Low tide ') + kd + fmtT(bm.t) + (cf ? ' · coef ' + cf + (cf >= 80 ? T(' — idéal', ' — ideal') : '') : '')}; }
   }
   if (p.live === 'market'){ var m = marketInfo(); return {c:m.open ? 'ok' : '', t:(m.open ? '🟢 ' : '🕖 ') + m.txt + (m.open ? T(" · jusqu'à 13h", ' · until 1pm') : '')}; }
   return null;
@@ -2511,6 +2539,8 @@ function renderPlaces(){
     var items = list.filter(function(p){ return p.cat === c[0]; }); if (!items.length) return;
     h += '<div class="xgroup">' + c[1] + ' ' + T(c[2], c[3]) + '</div>';
     if (c[0] === 'peche') h += '<div class="xrules"><b>' + T('Les règles à connaître', 'Rules to know') + '</b><ul>' + T('<li>De jour uniquement, à marée basse : de 2 h avant à 2 h 30 après la basse mer, idéalement par coefficient ≥ 80.</li><li>Tailles minimales : palourde 4 cm (japonaise 3,5), coque 2,7 cm, couteau 10 cm, moule 4 cm, crevette 5 cm. Une réglette est obligatoire.</li><li>3 litres maximum de coques et palourdes (cumulés) par personne. Pas de râteau.</li><li>Interdit partout sur le Bassin : huîtres et « bibis ». Palourdes interdites à l\'Île aux Oiseaux et à la Humeyre. Restez à plus de 15 m des parcs à huîtres.</li><li>Avant de partir, vérifiez les fermetures sanitaires temporaires.</li>', '<li>Daylight only, at low tide: from 2 h before to 2 h 30 after low water, ideally with a coefficient ≥ 80.</li><li>Minimum sizes: clam 4 cm (Japanese 3.5), cockle 2.7 cm, razor clam 10 cm, mussel 4 cm, shrimp 5 cm. A measuring ruler is compulsory.</li><li>3 litres maximum of cockles and clams (combined) per person. No rakes.</li><li>Forbidden everywhere in the Bay: oysters and "bibis". Clams forbidden at Île aux Oiseaux and La Humeyre. Stay more than 15 m from oyster beds.</li><li>Check temporary sanitary closures before you go.</li>') + '</ul><a href="https://www.pecheapied-loisir.fr/reglementation/gironde/" target="_blank" rel="noopener">' + T('Réglementation complète ↗', 'Full regulations ↗') + '</a></div>';
+    if (c[0] === 'hike') h += '<p class="xnote">' + T('Des sentiers plats et balisés, faciles en famille. Dans les espaces protégés, on reste sur les chemins.', 'Flat, waymarked trails, easy with children. In protected areas, please stay on the paths.') + '</p>';
+    if (c[0] === 'waste') h += '<p class="xnote">' + T('Le verre se dépose <b>en vrac</b> dans les bornes, les ordures ménagères <b>en sac</b>. Points de collecte officiels de la COBAN.', 'Glass goes in the banks <b>loose</b>, general waste <b>in bags</b>. Official COBAN collection points.') + '</p>';
     if (c[0] === 'food') h += '<p class="xnote">' + T('Toutes les cabanes ostréicoles se valent : vous pouvez y aller <b>les yeux fermés</b>. Deux de nos préférées sont ci-dessous.', 'Every oyster shack is trustworthy — <b>pick any one with confidence</b>. Two of our favourites are below.') + '</p>';
     h += '<div class="places">' + items.map(placeCard).join('') + '</div>';
   });
@@ -2534,7 +2564,7 @@ function mapPad(){
   var st = $('#xpanel').getAttribute('data-state'), ph = $('#xpanel').offsetHeight || 500, cover = st === 'half' ? ph*.58 : st === 'full' ? ph : 220;
   return {tl:[30, 90], br:[30, Math.round(cover) + 20]};
 }
-function boundsPts(){ return PLACES.filter(function(p){ return p.lat && (S.mapCat === 'all' ? ['hortense', 'pap-mimbeau', 'ss-horizon', 'ss-dune', 'ss-moulleau'].indexOf(p.id) < 0 : p.cat === S.mapCat); }).map(function(p){ return [p.lat, p.lon]; }).concat([[CFG.home.lat, CFG.home.lon]]); }
+function boundsPts(){ return PLACES.filter(function(p){ return p.lat && (S.mapCat === 'all' ? ['hortense', 'pap-mimbeau', 'ss-horizon', 'ss-dune', 'ss-moulleau', 'rd-piraillan', 'rd-graveyron', 'rd-teich'].indexOf(p.id) < 0 : p.cat === S.mapCat); }).map(function(p){ return [p.lat, p.lon]; }).concat([[CFG.home.lat, CFG.home.lon]]); }
 function initMap(){
   if (MAP) return Promise.resolve();
   return loadLeaflet().then(function(){
