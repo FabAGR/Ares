@@ -110,10 +110,16 @@ em{font-style:italic}
 .brand-mark svg{width:22px;height:22px}
 .brand small{display:block;font-weight:600;letter-spacing:.14em;color:var(--accent);font-size:9px;margin-top:2px}
 .bar-r{display:flex;align-items:center;gap:8px}
-.lang{display:flex;background:rgba(127,127,127,.16);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:3px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.lang{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;background:rgba(127,127,127,.16);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:3px;cursor:pointer;color:var(--text);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.lang:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.lang-thumb{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:var(--gold);box-shadow:0 4px 12px -4px rgba(0,0,0,.45);transition:transform .5s cubic-bezier(.34,1.45,.55,1),width .2s var(--ease)}
+.lang.is-en .lang-thumb{transform:translateX(100%)}
+.lang:active .lang-thumb{width:calc(50% + 6px)}
+.lang.is-en:active .lang-thumb{transform:translateX(calc(100% - 9px))}
+.lang-opt{position:relative;z-index:1;font:700 11px/1 var(--sans);padding:7px 10px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:5px;opacity:.7;transition:color .35s var(--ease),opacity .35s}
+.lang-opt.on{color:#14100A;opacity:1}
+@media (prefers-reduced-motion: reduce){.lang-thumb,.lang-opt{transition:none}}
 .appbar.solid .lang{border-color:var(--line2)}
-.lang button{border:0;background:transparent;opacity:.75;font:700 11px/1 var(--sans);padding:7px 10px;border-radius:999px;display:flex;align-items:center;gap:5px;color:var(--text);transition:all .3s var(--ease)}
-.lang button.on{background:var(--gold);color:#14100A;opacity:1}
 .flag{width:14px;height:9px;border-radius:2px;display:inline-block;overflow:hidden;position:relative}
 .flag-fr{background:linear-gradient(90deg,#0055A4 33%,#fff 33% 66%,#EF4135 66%)}
 .flag-uk{background:#012169}
@@ -768,7 +774,7 @@ body.mapmode footer{display:none}
   .btn:hover{border-color:color-mix(in srgb,var(--gold) 55%,transparent)}
   .fbtn:hover:not(.on),.day:hover:not(.on){background:var(--line)}
   .dock button:not(.on):hover{color:var(--text)}
-  .lang button:not(.on):hover{opacity:1}
+  .lang:hover .lang-opt{opacity:1}
   .gp-dev [data-k]:hover{filter:brightness(1.06)}
   #wxHourly,.stories,#acts,.filters,.days{cursor:grab}
   .is-drag{cursor:grabbing!important;scroll-snap-type:none!important;user-select:none}
@@ -903,7 +909,7 @@ body.mapmode footer{display:none}
 @media (max-width:370px){
   .nowc>*{padding:2px 8px}.date-tile .dt-d{font-size:32px}.now-big{font-size:23px}#nowTideH{font-size:18px!important}
   .mini-ring{width:32px;height:32px}.now-row .wi{width:28px;height:28px}#nowWxIc{width:28px!important;height:28px!important}
-  .brand small{letter-spacing:.08em}.lang button{padding:7px 8px}.tide-top{grid-template-columns:118px 1fr}.gauge{width:118px;height:118px}.ts-big{font-size:34px}
+  .brand small{letter-spacing:.08em}.lang-opt{padding:7px 8px}.tide-top{grid-template-columns:118px 1fr}.gauge{width:118px;height:118px}.ts-big{font-size:34px}
   .synth .stat b{font-size:28px}.hero h1{font-size:40px}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
@@ -1022,10 +1028,11 @@ body.mapmode .czfab,body.czon .czfab{opacity:0;pointer-events:none;transform:sca
     <span>Le Cocon<small>du Bassin · Arès</small></span>
   </a>
   <div class="bar-r">
-    <div class="lang" role="group" aria-label="Langue / Language">
-      <button data-lang="fr" id="btn-fr"><span class="flag flag-fr"></span>FR</button>
-      <button data-lang="en" id="btn-en"><span class="flag flag-uk"></span>EN</button>
-    </div>
+    <button class="lang" id="langSw" type="button" data-lang="toggle" role="switch" aria-checked="false" aria-label="English">
+      <span class="lang-thumb" aria-hidden="true"></span>
+      <span class="lang-opt on" id="btn-fr" aria-hidden="true"><span class="flag flag-fr"></span>FR</span>
+      <span class="lang-opt" id="btn-en" aria-hidden="true"><span class="flag flag-uk"></span>EN</span>
+    </button>
     <a class="ibtn" href="https://www.instagram.com/tinyhouse.33740/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg></a>
   </div>
 </header>
@@ -3234,11 +3241,17 @@ function route(){
   if (anchor) setTimeout(function(){ var a = document.getElementById(anchor); if (a) a.scrollIntoView({behavior:RM ? 'auto' : 'smooth', block:'start'}); }, 140);
   observeReveal();
 }
+function syncLangSw(){
+  var sw = $('#langSw'); if (!sw) return;
+  sw.classList.toggle('is-en', LANG === 'en'); sw.setAttribute('aria-checked', LANG === 'en' ? 'true' : 'false');
+  $('#btn-fr').classList.toggle('on', LANG === 'fr'); $('#btn-en').classList.toggle('on', LANG === 'en');
+}
 function setLang(l){
   LANG = l === 'en' ? 'en' : 'fr'; document.documentElement.lang = LANG;
-  $('#btn-fr').classList.toggle('on', LANG === 'fr'); $('#btn-en').classList.toggle('on', LANG === 'en');
+  syncLangSw();
   try { localStorage.setItem('cocon-lang', LANG); } catch(e){}
   renderAll(); moveInd();
+  if (typeof czChipsRender === 'function') czChipsRender();
   if (GP.id){ var i = GP.i, id = GP.id; openGuide(id, i); }
 }
 function toast(msg){ var t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(function(){ t.classList.remove('on'); }, 2200); }
@@ -3307,7 +3320,7 @@ document.addEventListener('click', function(e){
   if (!a) return;
   var d = a.dataset;
   if (d.go){ location.hash = d.go; return; }
-  if (d.lang){ setLang(d.lang); return; }
+  if (d.lang){ setLang(d.lang === 'toggle' ? (LANG === 'fr' ? 'en' : 'fr') : d.lang); return; }
   if (d.copy){ e.preventDefault(); copyWifi(a); return; }
   if (d.tday != null){ S.tideDay = +d.tday; renderTideDays(); renderTideChart(); renderTideExt(); return; }
   if (d.scroll){ $$('.seg button').forEach(function(b){ b.classList.toggle('on', b === a); }); var t = document.getElementById(d.scroll); if (t) window.scrollTo({top:t.getBoundingClientRect().top + scrollY - 130, behavior:RM ? 'auto' : 'smooth'}); return; }
@@ -3362,7 +3375,7 @@ function boot(){
   S.guest = guestInfo();
   buildScenes(); initStoryGestures(); initGuides(); initPanel(); initToc();
   dragScroll($('#wxHourly'), true); ['#homeStories', '#newsStories', '#acts', '#nFilters', '#mapFilters', '#tideDays'].forEach(function(q){ dragScroll($(q)); });
-  $('#btn-fr').classList.toggle('on', LANG === 'fr'); $('#btn-en').classList.toggle('on', LANG === 'en');
+  syncLangSw();
   renderAll(); route();
   var refresh = function(){ renderHome(); renderBrief(); renderActivities(); updateScenes(); renderPlaces(); };
   var wxDone = function(){ applyTheme(); refresh(); renderWeather(); renderTide(); renderLiveChips(); };
@@ -3717,7 +3730,6 @@ function czChipsRender(){
 }
 function initConcierge(){
   czChipsRender();
-  $$('[data-lang]').forEach(function(b){ b.addEventListener('click', function(){ setTimeout(czChipsRender, 50); }); });
   document.addEventListener('click', function(e){
     var q = e.target.closest('[data-czq]'); if (q){ e.preventDefault(); if ($('#czP').classList.contains('on')) czAsk(q.getAttribute('data-czq')); else czOpen(q.getAttribute('data-czq')); return; }
     var o = e.target.closest('[data-cz]'); if (o){ e.preventDefault(); czOpen(null, o.hasAttribute('data-cz-focus')); }
